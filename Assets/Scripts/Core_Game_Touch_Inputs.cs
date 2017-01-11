@@ -19,14 +19,8 @@ public class Core_Game_Touch_Inputs : MonoBehaviour
     void OnMouseDown()
     {
 
-
         Vector3 pos = GetGridPoint();
-        hero.SetDestination(pos);
-
-        //print(Input.mousePosition);
-        //print(GetGridPoint());
-
-      
+        hero.SetDestination(pos);      
     }
 
     Vector3 GetGridPoint()
@@ -42,13 +36,5 @@ public class Core_Game_Touch_Inputs : MonoBehaviour
         Vector3 roundedPos = new Vector3(Mathf.RoundToInt(worldPos.x), Mathf.RoundToInt(worldPos.y), 0f);
 
         return roundedPos;
-
-        /*x = x / transform.GetComponent<RectTransform>().rect.width * 10;
-        y = y / transform.GetComponent<RectTransform>().rect.height * 10;
-
-        x = Mathf.Floor(x);
-        y = Mathf.Floor(y);
-
-        return new Vector2(x,y); */
     }
 }

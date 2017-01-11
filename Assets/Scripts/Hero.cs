@@ -8,19 +8,20 @@ public class Hero : MonoBehaviour
     [Range(-1f, 1.5f)]
     public float currentSpeed;
 
-    [Tooltip("Average number of time in seconds between spawning")]
-    public float spawnRate;
-
     private Animator anim;
     GameObject currentTarget;
     private Vector3 destination;
-
+    private Vector3 potentialDest;
+    private LineRenderer lineRenderer;
+    private bool isMoving;
 
     // Use this for initialization
     void Start()
     {
         anim = GetComponent<Animator>();
         destination = transform.position;
+        lineRenderer = GetComponent<LineRenderer>();
+        isMoving = false;
     }
 
     // Update is called once per frame
@@ -35,6 +36,8 @@ public class Hero : MonoBehaviour
         if (currentTarget == null)
             anim.SetBool("IsAttacking", false);
 
+     if(isMoving)
+        lineRenderer.SetPosition(0, transform.position);
 
     }
 
@@ -42,7 +45,23 @@ public class Hero : MonoBehaviour
     void OnMouseDown()
     {
         Debug.Log("you got me!");
+        lineRenderer.SetVertexCount(2);
+        lineRenderer.SetPosition(0, transform.position);
+    
     }
+
+    void OnMouseDrag()
+    {
+         potentialDest = GetGridPoint();
+        lineRenderer.SetPosition(1, GetMousePos());
+    }
+
+    void OnMouseUp()
+    {
+        SetDestination(potentialDest);
+        isMoving = true;
+    }
+
 
     public void SetDestination(Vector3 pos)
     {
@@ -91,15 +110,46 @@ public class Hero : MonoBehaviour
         if (currentTarget)
         {
             anim.SetBool("IsAttacking", true);
-            SetSpeed(0);
+          //  SetSpeed(0);
         }
         else
         {
             anim.SetBool("IsAttacking", false);
-            SetSpeed(1);
+           // SetSpeed(1);
         }
 
     }
 
+    Vector3 GetGridPoint()
+    {
+        float mouseX = Input.mousePosition.x;
+        float mouseY = Input.mousePosition.y;
+
+        float distanceFromCamera = 10f;
+
+        Vector3 weirdTriplet = new Vector3(mouseX, mouseY, distanceFromCamera);
+        Vector2 worldPos = Camera.main.ScreenToWorldPoint(weirdTriplet);
+
+        Vector3 roundedPos = new Vector3(Mathf.RoundToInt(worldPos.x), Mathf.RoundToInt(worldPos.y), 0f);
+
+        return roundedPos;
+    }
+
+
+    Vector3 GetMousePos()
+    {
+        float mouseX = Input.mousePosition.x;
+        float mouseY = Input.mousePosition.y;
+
+        float distanceFromCamera = 10f;
+
+        Vector3 weirdTriplet = new Vector3(mouseX, mouseY, distanceFromCamera);
+        Vector2 worldPos = Camera.main.ScreenToWorldPoint(weirdTriplet);
+
+       Vector3 mapPos = new Vector3(worldPos.x, worldPos.y, 0f);
+
+        return mapPos;
+
+    }
 
 }
