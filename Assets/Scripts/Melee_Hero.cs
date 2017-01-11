@@ -24,10 +24,14 @@ public class Melee_Hero : MonoBehaviour
     void OnTriggerEnter2D(Collider2D col)
     {
         GameObject obj = col.gameObject;
-          Debug.Log(gameObject.name + " collided with " + obj.name);
+         // Debug.Log(gameObject.name + " collided with " + obj.name);
         
-        if (col.GetComponent<Attacker>())
+
+        if(obj == hero.currentTarget)
             hero.Attack(obj);
+
+        //if (col.GetComponent<Attacker>())
+        //  hero.Attack(obj);
 
 
     }

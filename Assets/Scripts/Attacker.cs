@@ -21,9 +21,13 @@ public class Attacker : MonoBehaviour {
 
     // Update is called once per frame
     void Update () {
-        transform.Translate(Vector3.left * currentSpeed * Time.deltaTime);
+        transform.Translate(Vector3.left * currentSpeed * Time.deltaTime * UniversalSpeed.speed);
 
-        if(currentTarget == null)
+        //Slows down animation in slomode
+        anim.speed = UniversalSpeed.speed;
+
+
+        if (currentTarget == null)
             anim.SetBool("IsAttacking", false);
 
 
