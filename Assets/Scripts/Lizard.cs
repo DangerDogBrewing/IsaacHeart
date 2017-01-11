@@ -26,8 +26,11 @@ public class Lizard : MonoBehaviour {
      //   Debug.Log(gameObject.name + " collided with " + obj.name);
         if(col.tag == "Defender")
             attacker.Attack(obj);
+        if(col.GetComponent<Hero>())
+            attacker.Attack(obj);
+
 
     }
 
-    
+
 }
