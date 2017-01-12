@@ -6,6 +6,7 @@ public class Projectile : MonoBehaviour {
 
     public float speed;
     public float damage;
+    public GameObject target;
 
 	// Use this for initialization
 	void Start () {
@@ -14,7 +15,14 @@ public class Projectile : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        transform.Translate(Vector3.right * speed * Time.deltaTime);
+
+        if (target)
+            transform.position = Vector3.MoveTowards(transform.position, target.transform.position, speed * Time.deltaTime * UniversalSpeed.speed);
+        else
+        {
+            Debug.Log("No target for projectile");
+            Destroy(gameObject);
+        }
 	}
 
     void OnTriggerEnter2D(Collider2D col)
