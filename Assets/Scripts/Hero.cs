@@ -29,6 +29,7 @@ public class Hero : MonoBehaviour
         lineRenderer = GetComponent<LineRenderer>();
         firstCommandGiven = false;
         inRange = false;
+        currentTarget = null;
 }
 
 // Update is called once per frame

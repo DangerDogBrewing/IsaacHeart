@@ -46,7 +46,7 @@ public class Melee_Hero : MonoBehaviour
 
         if (obj == hero.currentTarget)
         {
-            hero.Attack(obj);
+            
             hero.inRange = false;
         }
     }
