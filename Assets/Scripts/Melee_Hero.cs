@@ -24,17 +24,31 @@ public class Melee_Hero : MonoBehaviour
     void OnTriggerEnter2D(Collider2D col)
     {
         GameObject obj = col.gameObject;
-         // Debug.Log(gameObject.name + " collided with " + obj.name);
-        
+        // Debug.Log(gameObject.name + " collided with " + obj.name);
 
-        if(obj == hero.currentTarget)
+
+        if (obj == hero.currentTarget)
+        {
             hero.Attack(obj);
+            hero.inRange = true;
+        }
 
         //if (col.GetComponent<Attacker>())
         //  hero.Attack(obj);
 
-
     }
 
+    void OnTriggerExit2D(Collider2D col)
+    {
+        GameObject obj = col.gameObject;
+        // Debug.Log(gameObject.name + " collided with " + obj.name);
+
+
+        if (obj == hero.currentTarget)
+        {
+            hero.Attack(obj);
+            hero.inRange = false;
+        }
+    }
 
 }

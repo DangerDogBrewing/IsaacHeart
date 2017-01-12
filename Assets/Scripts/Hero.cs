@@ -14,7 +14,9 @@ public class Hero : MonoBehaviour
     private Vector3 potentialDest;
     private LineRenderer lineRenderer;
     private bool firstCommandGiven;
-    private bool isMovingToAttack;
+    public bool inRange;
+    
+    public float damage;
 
     private Color moveLine = new Color(0.2F, 0.3F, 0.4F, 0.5F);
     private Color enemyLine = new Color(0.9F, 0.3F, 0.4F, 0.5F);
@@ -26,8 +28,7 @@ public class Hero : MonoBehaviour
         destination = transform.position;
         lineRenderer = GetComponent<LineRenderer>();
         firstCommandGiven = false;
-        isMovingToAttack = false;
-
+        inRange = false;
 }
 
 // Update is called once per frame
@@ -35,14 +36,20 @@ void Update()
     {
 
         
-        if (currentTarget != null) //Currently an enemy target, move towards
+        if ( currentTarget && !inRange ) //Currently an enemy target out of range, move towards
         {  
             destination = currentTarget.transform.position;
             transform.position = Vector3.MoveTowards(transform.position, destination , speed * Time.deltaTime * UniversalSpeed.speed);
             lineRenderer.SetPosition(1, destination);
             anim.SetBool("IsWalking", true);
         }
-        else if( Vector3.Distance(transform.position, destination) > 0.5f ) //move target but no enemy
+        else if (currentTarget && inRange) // has target and target is in range
+        {
+            anim.SetBool("IsWalking", false);
+            destination = currentTarget.transform.position;
+            lineRenderer.SetPosition(1, destination);
+        }
+        else if( Vector3.Distance(transform.position, destination) > 0.1f ) //move target but no enemy
         {
             transform.position = Vector3.MoveTowards(transform.position, destination, speed * Time.deltaTime * UniversalSpeed.speed);
             lineRenderer.SetPosition(1, destination);
@@ -52,15 +59,16 @@ void Update()
         {
             anim.SetBool("IsWalking", false);
         }
-                
-
-        //Slows down animations in SlowMo
-        anim.speed = UniversalSpeed.speed;
 
         //If target no longer exists, stop attacking
         if (currentTarget == null)
+        {
             anim.SetBool("IsAttacking", false);
+            inRange = false;
+        }
 
+        //Slows down animations in SlowMo
+        anim.speed = UniversalSpeed.speed;
 
         //Sets draw line start at hero
      if(firstCommandGiven)
@@ -74,6 +82,7 @@ void Update()
         Debug.Log("you got me!");
         lineRenderer.SetVertexCount(2);
         lineRenderer.SetPosition(0, transform.position);
+        anim.SetTrigger("Hop");
         UniversalSpeed.SlowMo();  //slows down time to allow planning
     }
 
@@ -103,20 +112,18 @@ void Update()
             if (hit.collider.gameObject.GetComponent<Attacker>())
             {
                 currentTarget = hit.collider.gameObject;
-                isMovingToAttack = true;
                 lineRenderer.SetColors(enemyLine, enemyLine);
                 Debug.Log("attacking new target " + hit.collider.gameObject.transform.name);
             }
             else
             {
-                isMovingToAttack = false;
                 currentTarget = null;
                 lineRenderer.SetColors(moveLine, moveLine);
             }
         }
         else
         {
-            isMovingToAttack = false;
+
             currentTarget = null;
             lineRenderer.SetColors(moveLine, moveLine);
         }
@@ -129,7 +136,7 @@ void Update()
     }
 
 
-    public void StrikeCurrentTarget(float damage)
+    public void StrikeCurrentTarget()
     {
         Health targetHealth = null;
 
@@ -169,12 +176,13 @@ void Update()
         if (currentTarget != null)
         {
             anim.SetBool("IsAttacking", true);
-          //  SetSpeed(0);
+            destination = transform.position;
         }
         else
         {
             anim.SetBool("IsAttacking", false);
-           // SetSpeed(1);
+            inRange = false;
+            // SetSpeed(1);
         }
 
     }
