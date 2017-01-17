@@ -51,9 +51,6 @@
     <Reference Include="UnityEngine">
       <HintPath>Library\UnityAssemblies\UnityEngine.dll</HintPath>
     </Reference>
-    <Reference Include="UnityEngine.Advertisements">
-      <HintPath>Library\UnityAssemblies\UnityEngine.Advertisements.dll</HintPath>
-    </Reference>
     <Reference Include="UnityEngine.UI">
       <HintPath>Library\UnityAssemblies\UnityEngine.UI.dll</HintPath>
     </Reference>
@@ -69,9 +66,6 @@
     <Reference Include="UnityEngine.HoloLens">
       <HintPath>Library\UnityAssemblies\UnityEngine.HoloLens.dll</HintPath>
     </Reference>
-    <Reference Include="UnityEngine.Purchasing">
-      <HintPath>Library\UnityAssemblies\UnityEngine.Purchasing.dll</HintPath>
-    </Reference>
     <Reference Include="UnityEngine.VR">
       <HintPath>Library\UnityAssemblies\UnityEngine.VR.dll</HintPath>
     </Reference>
@@ -80,6 +74,30 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Anima2D\Examples\Scripts\CharacterMotion.cs" />
+    <Compile Include="Assets\Anima2D\Examples\Scripts\Follow.cs" />
+    <Compile Include="Assets\Anima2D\Examples\Scripts\SkinnedMeshCombiner.cs" />
+    <Compile Include="Assets\Anima2D\Examples\Scripts\SpringBone.cs" />
+    <Compile Include="Assets\Anima2D\Examples\Scripts\SpringCollider.cs" />
+    <Compile Include="Assets\Anima2D\Examples\Scripts\SpringManager.cs" />
+    <Compile Include="Assets\Anima2D\Examples\Scripts\SpriteCycle.cs" />
+    <Compile Include="Assets\Anima2D\Examples\Scripts\SpriteCycleParallax.cs" />
+    <Compile Include="Assets\Anima2D\Scripts\Bone2D.cs" />
+    <Compile Include="Assets\Anima2D\Scripts\Control.cs" />
+    <Compile Include="Assets\Anima2D\Scripts\EditorUpdaterProxy.cs" />
+    <Compile Include="Assets\Anima2D\Scripts\Ik2D.cs" />
+    <Compile Include="Assets\Anima2D\Scripts\IkCCD2D.cs" />
+    <Compile Include="Assets\Anima2D\Scripts\IkGroup.cs" />
+    <Compile Include="Assets\Anima2D\Scripts\IkLimb2D.cs" />
+    <Compile Include="Assets\Anima2D\Scripts\IkSolver2D.cs" />
+    <Compile Include="Assets\Anima2D\Scripts\IkSolver2DCCD.cs" />
+    <Compile Include="Assets\Anima2D\Scripts\IkSolver2DLimb.cs" />
+    <Compile Include="Assets\Anima2D\Scripts\MathUtils.cs" />
+    <Compile Include="Assets\Anima2D\Scripts\Pose.cs" />
+    <Compile Include="Assets\Anima2D\Scripts\PoseManager.cs" />
+    <Compile Include="Assets\Anima2D\Scripts\SpriteMesh.cs" />
+    <Compile Include="Assets\Anima2D\Scripts\SpriteMeshAnimation.cs" />
+    <Compile Include="Assets\Anima2D\Scripts\SpriteMeshInstance.cs" />
     <Compile Include="Assets\Scripts\Ability.cs" />
     <Compile Include="Assets\Scripts\Attacker.cs" />
     <Compile Include="Assets\Scripts\Core_Game_Touch_Inputs.cs" />
@@ -109,64 +127,13 @@
     <Compile Include="Assets\Scripts\Shredder.cs" />
     <Compile Include="Assets\Scripts\SporeDisplay.cs" />
     <Compile Include="Assets\Scripts\UniversalSpeed.cs" />
-    <Compile Include="Assets\Spriter2UnityDX-master\Assets\Spriter2UnityDX\Runtime\EntityRenderer.cs" />
-    <Compile Include="Assets\Spriter2UnityDX-master\Assets\Spriter2UnityDX\Runtime\SortingOrderUpdater.cs" />
-    <Compile Include="Assets\Spriter2UnityDX-master\Assets\Spriter2UnityDX\Runtime\TextureController.cs" />
-    <Compile Include="Assets\SpritesAndBones\Scripts\AnimationWindowUtils.cs" />
-    <Compile Include="Assets\SpritesAndBones\Scripts\Bone.cs" />
-    <Compile Include="Assets\SpritesAndBones\Scripts\ControlPoint.cs" />
-    <Compile Include="Assets\SpritesAndBones\Scripts\Helper.cs" />
-    <Compile Include="Assets\SpritesAndBones\Scripts\InverseKinematics.cs" />
-    <Compile Include="Assets\SpritesAndBones\Scripts\Pose.cs" />
-    <Compile Include="Assets\SpritesAndBones\Scripts\ScriptableObjectUtility.cs" />
-    <Compile Include="Assets\SpritesAndBones\Scripts\Skeleton.cs" />
-    <Compile Include="Assets\SpritesAndBones\Scripts\Skin2D.cs" />
-    <Compile Include="Assets\SpritesAndBones\Scripts\Skin2DX.cs" />
-    <Compile Include="Assets\SpritesAndBones\Scripts\SkinMaker.cs" />
-    <Compile Include="Assets\SpritesAndBones\Scripts\Triangulation\Polygon\Polygon.cs" />
-    <Compile Include="Assets\SpritesAndBones\Scripts\Triangulation\Polygon\PolygonPoint.cs" />
-    <Compile Include="Assets\SpritesAndBones\Scripts\Triangulation\Polygon\PolygonSet.cs" />
-    <Compile Include="Assets\SpritesAndBones\Scripts\Triangulation\Triangulation\Delaunay\DelaunayTriangle.cs" />
-    <Compile Include="Assets\SpritesAndBones\Scripts\Triangulation\Triangulation\Delaunay\Sweep\AdvancingFront.cs" />
-    <Compile Include="Assets\SpritesAndBones\Scripts\Triangulation\Triangulation\Delaunay\Sweep\AdvancingFrontNode.cs" />
-    <Compile Include="Assets\SpritesAndBones\Scripts\Triangulation\Triangulation\Delaunay\Sweep\DTSweep.cs" />
-    <Compile Include="Assets\SpritesAndBones\Scripts\Triangulation\Triangulation\Delaunay\Sweep\DTSweepBasin.cs" />
-    <Compile Include="Assets\SpritesAndBones\Scripts\Triangulation\Triangulation\Delaunay\Sweep\DTSweepConstraint.cs" />
-    <Compile Include="Assets\SpritesAndBones\Scripts\Triangulation\Triangulation\Delaunay\Sweep\DTSweepContext.cs" />
-    <Compile Include="Assets\SpritesAndBones\Scripts\Triangulation\Triangulation\Delaunay\Sweep\DTSweepDebugContext.cs" />
-    <Compile Include="Assets\SpritesAndBones\Scripts\Triangulation\Triangulation\Delaunay\Sweep\DTSweepEdgeEvent.cs" />
-    <Compile Include="Assets\SpritesAndBones\Scripts\Triangulation\Triangulation\Delaunay\Sweep\DTSweepPointComparator.cs" />
-    <Compile Include="Assets\SpritesAndBones\Scripts\Triangulation\Triangulation\Delaunay\Sweep\PointOnEdgeException.cs" />
-    <Compile Include="Assets\SpritesAndBones\Scripts\Triangulation\Triangulation\ITriangulatable.cs" />
-    <Compile Include="Assets\SpritesAndBones\Scripts\Triangulation\Triangulation\Orientation.cs" />
-    <Compile Include="Assets\SpritesAndBones\Scripts\Triangulation\Triangulation\Sets\ConstrainedPointSet.cs" />
-    <Compile Include="Assets\SpritesAndBones\Scripts\Triangulation\Triangulation\Sets\PointSet.cs" />
-    <Compile Include="Assets\SpritesAndBones\Scripts\Triangulation\Triangulation\TriangulationAlgorithm.cs" />
-    <Compile Include="Assets\SpritesAndBones\Scripts\Triangulation\Triangulation\TriangulationConstraint.cs" />
-    <Compile Include="Assets\SpritesAndBones\Scripts\Triangulation\Triangulation\TriangulationContext.cs" />
-    <Compile Include="Assets\SpritesAndBones\Scripts\Triangulation\Triangulation\TriangulationDebugContext.cs" />
-    <Compile Include="Assets\SpritesAndBones\Scripts\Triangulation\Triangulation\TriangulationMode.cs" />
-    <Compile Include="Assets\SpritesAndBones\Scripts\Triangulation\Triangulation\TriangulationPoint.cs" />
-    <Compile Include="Assets\SpritesAndBones\Scripts\Triangulation\Triangulation\TriangulationUtil.cs" />
-    <Compile Include="Assets\SpritesAndBones\Scripts\Triangulation\Triangulation\Util\PointGenerator.cs" />
-    <Compile Include="Assets\SpritesAndBones\Scripts\Triangulation\Triangulation\Util\PolygonGenerator.cs" />
-    <Compile Include="Assets\SpritesAndBones\Scripts\Triangulation\Utility\FixedArray3.cs" />
-    <Compile Include="Assets\SpritesAndBones\Scripts\Triangulation\Utility\FixedBitArray3.cs" />
-    <Compile Include="Assets\SpritesAndBones\Scripts\Utils\AnimationToPNG.cs" />
-    <Compile Include="Assets\SpritesAndBones\Scripts\Utils\BitmapHelper.cs" />
-    <Compile Include="Assets\SpritesAndBones\Scripts\Utils\Bone2DWeight.cs" />
-    <Compile Include="Assets\SpritesAndBones\Scripts\Utils\HSBColor.cs" />
-    <Compile Include="Assets\SpritesAndBones\Scripts\Utils\MeshHelper.cs" />
-    <Compile Include="Assets\SpritesAndBones\Scripts\Utils\PolygonMesh.cs" />
-    <Compile Include="Assets\SpritesAndBones\Scripts\Utils\SimplifyTools.cs" />
-    <Compile Include="Assets\SpritesAndBones\Scripts\Utils\SpriteMesh.cs" />
-    <Compile Include="Assets\SpritesAndBones\Scripts\Utils\Triangulator.cs" />
-    <Compile Include="Assets\SpritesAndBones\Scripts\Utils\Utils.cs" />
-    <Compile Include="Assets\SpritesAndBones\Scripts\Utils\Vertices.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Assets\Spriter2UnityDX-master\ProjectSettings\ProjectVersion.txt" />
-    <None Include="Assets\SpritesAndBones\license-attributions.txt" />
+    <None Include="Assets\Anima2D\Examples\Shaders\Unlit-Alpha-Cull-off.shader" />
+    <None Include="Assets\Anima2D\Examples\Shaders\VertexLitOneDirectional.shader" />
+    <None Include="Assets\Anima2D\Licenses.txt" />
+    <None Include="Assets\Anima2D\Readme.txt" />
+    <None Include="Assets\Anima2D\Version.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\SyntaxTree\UnityVS\2015\UnityVS.CSharp.targets" />
 </Project>
