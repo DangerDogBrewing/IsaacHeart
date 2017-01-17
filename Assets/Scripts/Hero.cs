@@ -15,6 +15,8 @@ public class Hero : MonoBehaviour
     private LineRenderer lineRenderer;
     private bool firstCommandGiven;
     public bool inRange;
+
+    private Spellbook spellbook;
     
     public float damage;
 
@@ -30,6 +32,8 @@ public class Hero : MonoBehaviour
         firstCommandGiven = false;
         inRange = false;
         currentTarget = null;
+
+        spellbook = GetComponent<Spellbook>();
 }
 
 // Update is called once per frame
@@ -85,6 +89,13 @@ void Update()
         lineRenderer.SetPosition(0, transform.position);
         anim.SetTrigger("Hop");
         UniversalSpeed.SlowMo();  //slows down time to allow planning
+
+
+
+        if (spellbook)
+           spellbook.OpenAbilities();
+        
+
     }
 
     void OnMouseDrag()
@@ -101,7 +112,8 @@ void Update()
         firstCommandGiven = true;
         UniversalSpeed.NormalSpeed();
 
-
+        if (spellbook)
+            spellbook.CloseAbilities();
     }
 
 
@@ -115,6 +127,10 @@ void Update()
                 currentTarget = hit.collider.gameObject;
                 lineRenderer.SetColors(enemyLine, enemyLine);
                 Debug.Log("attacking new target " + hit.collider.gameObject.transform.name);
+            }
+            else if(hit.collider.gameObject.GetComponent<AbilityIcon>())
+            {
+                Debug.Log("Casting spell: " + hit.collider.gameObject.transform.name);
             }
             else
             {
