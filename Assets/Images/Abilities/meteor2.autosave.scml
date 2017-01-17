@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<spriter_data scml_version="1.0" generator="BrashMonkey Spriter" generator_version="r10">
+    <folder id="0">
+        <file id="0" name="Meteor_1.png" width="300" height="300" pivot_x="0" pivot_y="1"/>
+        <file id="1" name="Meteor_2.png" width="300" height="300" pivot_x="0" pivot_y="1"/>
+    </folder>
+    <entity id="0" name="Meteor">
+        <obj_info name="bone_000" type="bone" w="218.791" h="10"/>
+        <animation id="0" name="Meteor_fall" length="500" interval="100">
+            <mainline>
+                <key id="0">
+                    <object_ref id="0" timeline="0" key="0" z_index="0"/>
+                </key>
+                <key id="1" time="185">
+                    <object_ref id="0" timeline="0" key="0" z_index="0"/>
+                </key>
+                <key id="2" time="399">
+                    <object_ref id="0" timeline="0" key="1" z_index="0"/>
+                </key>
+                <key id="3" time="408">
+                    <object_ref id="0" timeline="2" key="0" z_index="0"/>
+                    <object_ref id="1" timeline="1" key="0" z_index="1"/>
+                </key>
+                <key id="4" time="467"/>
+            </mainline>
+            <timeline id="0" name="Meteor_1">
+                <key id="0" spin="0">
+                    <object folder="0" file="0" x="-1127.417582" y="1133.461538" angle="0"/>
+                </key>
+                <key id="1" time="399" spin="0">
+                    <object folder="0" file="0" x="-288.956044" y="291.153846" angle="0"/>
+                </key>
+            </timeline>
+            <timeline id="1" name="Meteor_2">
+                <key id="0" time="408" spin="0">
+                    <object folder="0" file="1" x="-265.384615" y="303.846154" angle="0"/>
+                </key>
+            </timeline>
+            <timeline id="2" name="Meteor_2_000">
+                <key id="0" time="408" spin="0">
+                    <object folder="0" file="1" x="-265.384615" y="296.153846" angle="0"/>
+                </key>
+            </timeline>
+        </animation>
+    </entity>
+</spriter_data>
