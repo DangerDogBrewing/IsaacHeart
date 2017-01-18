@@ -17,7 +17,7 @@ public class Projectile : MonoBehaviour {
 	void Update () {
 
         if (target)
-            transform.position = Vector3.MoveTowards(transform.position, target.transform.position, speed * Time.deltaTime * UniversalSpeed.speed);
+            transform.position = Vector2.MoveTowards(transform.position, target.transform.position, speed * Time.deltaTime * UniversalSpeed.speed);
         else
         {
             Debug.Log("No target for projectile");

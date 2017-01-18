@@ -24,9 +24,9 @@ public class Meteor : MonoBehaviour {
 
         if (ab.target) 
         {
-            if ((Vector3.Distance(transform.position, ab.target.transform.position) > 0.9f) && followTarget )
+            if ((Vector2.Distance(transform.position, ab.target.transform.position) > 0.9f) && followTarget )
             {
-                transform.position = Vector3.MoveTowards(transform.position, ab.target.transform.position, speed * Time.deltaTime * UniversalSpeed.speed);
+                transform.position = Vector2.MoveTowards(transform.position, ab.target.transform.position, speed * Time.deltaTime * UniversalSpeed.speed);
             }
             else
             {

@@ -28,7 +28,7 @@ public class Melee_Hero : MonoBehaviour
     {
         if (hero.currentTarget)
         {
-            float distance = Vector3.Distance(hero.transform.position, hero.currentTarget.transform.position);
+            float distance = Vector2.Distance(hero.transform.position, hero.currentTarget.transform.position);
             // Debug.Log("Distance to target " + distance);
             if (distance <= range)
             {

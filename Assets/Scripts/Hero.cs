@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System;
 
 public class Hero : MonoBehaviour
 {
@@ -14,7 +15,6 @@ public class Hero : MonoBehaviour
     private Vector3 potentialDest;
     private LineRenderer lineRenderer;
     public bool inRange;
-
     private Spellbook spellbook;
     
     public float damage;
@@ -34,17 +34,19 @@ public class Hero : MonoBehaviour
         currentTarget = null;
 
         spellbook = GetComponent<Spellbook>();
+
 }
 
 // Update is called once per frame
 void Update()
     {
+        
         lineRenderer.SetPosition(0, transform.position);
 
         if ( currentTarget && !inRange ) //Currently an enemy target out of range, move towards
         {  
             destination = currentTarget.transform.position;
-            transform.position = Vector3.MoveTowards(transform.position, destination , speed * Time.deltaTime * UniversalSpeed.speed);
+            transform.position = Vector2.MoveTowards(transform.position, destination , speed * Time.deltaTime * UniversalSpeed.speed);
             lineRenderer.SetPosition(1, destination);
             anim.SetBool("IsWalking", true);
         }
@@ -55,9 +57,9 @@ void Update()
             lineRenderer.SetPosition(1, destination);
 
         }
-        else if( Vector3.Distance(transform.position, destination) > 0.1f ) //move target but no enemy
+        else if( Vector2.Distance(transform.position, destination) > 0.1f ) //move target but no enemy
         {
-            transform.position = Vector3.MoveTowards(transform.position, destination, speed * Time.deltaTime * UniversalSpeed.speed);
+            transform.position = Vector2.MoveTowards(transform.position, destination, speed * Time.deltaTime * UniversalSpeed.speed);
             lineRenderer.SetPosition(1, destination);
             anim.SetBool("IsWalking", true);
         }
@@ -95,7 +97,13 @@ void Update()
             
             //Debug.Log("face forward " + Quaternion.identity);
         }
+
+        //Changes Z order so things lower on y axis are closer to screen
+        transform.position = new Vector3(transform.position.x, transform.position.y, (transform.position.y - 10) );
+
     }
+
+
 
     //Hero is selected, drag line to move to or attack enemy
     void OnMouseDown()

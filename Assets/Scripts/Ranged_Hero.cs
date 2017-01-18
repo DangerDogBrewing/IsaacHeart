@@ -29,7 +29,7 @@ public class Ranged_Hero : MonoBehaviour
     {
         if (hero.currentTarget)
         {
-            float distance = Vector3.Distance(hero.transform.position, hero.currentTarget.transform.position);
+            float distance = Vector2.Distance(hero.transform.position, hero.currentTarget.transform.position);
            // Debug.Log("Distance to target " + distance);
                 if (distance <= range)
                 {
@@ -50,7 +50,7 @@ public class Ranged_Hero : MonoBehaviour
         Projectile newProjectile = Instantiate(projectile);
                
         newProjectile.transform.position = transform.position + new Vector3(0,.5f, 0);
-        newProjectile.transform.SetParent(transform);
+        //newProjectile.transform.SetParent(transform);
         newProjectile.target = hero.currentTarget;
 
        

@@ -25,9 +25,7 @@ public class Fox : MonoBehaviour {
 
         //Debug.Log(gameObject.name + " collided with " + col.gameObject.name);
 
-        if (obj.GetComponent<GraveStone>())
-            Jump();
-        else if (col.tag == "Defender")
+        if (col.tag == "Defender")
             attacker.Attack(obj);
 
     }
