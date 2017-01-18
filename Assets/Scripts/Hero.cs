@@ -83,14 +83,17 @@ void Update()
             //transform.Rotate(0, 180, 0);
             //transform.localRotation = Quaternion.Euler(0, 180, 0);
             transform.eulerAngles = new Vector2(0, 180);
-            Debug.Log("face back quaternioin " + Quaternion.identity);
+            transform.localScale = new Vector3(transform.localScale.x, transform.localScale.y, -1);
+            
+            //Debug.Log("face back quaternioin " + Quaternion.identity);
         }
         else if ((destination.x > transform.position.x) && (transform.rotation.y != 0))
         {
             //transform.Rotate(0, 180, 0);
             transform.localRotation = Quaternion.Euler(0, 0, 0);
-
-            Debug.Log("face forward " + Quaternion.identity);
+            transform.localScale = new Vector3(transform.localScale.x, transform.localScale.y, 1);
+            
+            //Debug.Log("face forward " + Quaternion.identity);
         }
     }
 
