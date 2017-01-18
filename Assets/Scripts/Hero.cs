@@ -184,6 +184,7 @@ void Update()
             else if (hit.collider.gameObject.GetComponent<AbilityIcon>())
             {
                 hit.collider.gameObject.GetComponent<AbilityIcon>().PrepareToCast();
+                destination = transform.position;
 
                 //Debug.Log("Casting spell: " + hit.collider.gameObject.transform.name);
             }
@@ -273,9 +274,10 @@ void Update()
         Vector3 weirdTriplet = new Vector3(mouseX, mouseY, distanceFromCamera);
         Vector2 worldPos = Camera.main.ScreenToWorldPoint(weirdTriplet);
 
-        Vector3 roundedPos = new Vector3(Mathf.RoundToInt(worldPos.x), Mathf.RoundToInt(worldPos.y), 0f);
+        //Vector3 roundedPos = new Vector3(Mathf.RoundToInt(worldPos.x), Mathf.RoundToInt(worldPos.y), 0f);
+        Vector3 mousePos = new Vector3(worldPos.x, worldPos.y, 0f);
 
-        return roundedPos;
+        return mousePos;
     }
 
 

@@ -11,10 +11,10 @@ public class Spellbook : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-        iconOffset[0] = new Vector3(-.3f, 1f, -1);
+        iconOffset[0] = new Vector3(-.4f, .8f, -1);
         iconOffset[1] = new Vector3(0, 1, -1);
-        iconOffset[2] = new Vector3(.3f, 1, -1);
-        iconOffset[3] = new Vector3(.6f, 1, -1);
+        iconOffset[2] = new Vector3(.4f, .8f, -1);
+        iconOffset[3] = new Vector3(.8f, 1, -1);
 
         abIcons = new AbilityIcon[abilities.Length];
         

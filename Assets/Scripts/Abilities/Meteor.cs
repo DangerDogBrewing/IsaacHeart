@@ -8,6 +8,7 @@ public class Meteor : MonoBehaviour {
 
     public float speed;
     public Animator anim;
+    private bool followTarget = true;
 
     private Ability ab;
 
@@ -21,9 +22,9 @@ public class Meteor : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-        if (ab.target)
+        if (ab.target) 
         {
-            if (Vector3.Distance(transform.position, ab.target.transform.position) > 0.9f)
+            if ((Vector3.Distance(transform.position, ab.target.transform.position) > 0.9f) && followTarget )
             {
                 transform.position = Vector3.MoveTowards(transform.position, ab.target.transform.position, speed * Time.deltaTime * UniversalSpeed.speed);
             }
@@ -31,7 +32,8 @@ public class Meteor : MonoBehaviour {
             {
                 // anim.explode
                 anim.SetTrigger("ExplodeTrigger");
-                Debug.Log("explode!");
+                followTarget = false;
+                //Debug.Log("explode!");
             }
 
         }
