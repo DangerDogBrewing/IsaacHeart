@@ -85,7 +85,7 @@ void Update()
     void OnMouseDown()
     {
         Debug.Log("you got me!");
-        lineRenderer.SetVertexCount(2);
+        lineRenderer.numPositions = 2;
         lineRenderer.SetPosition(0, transform.position);
         anim.SetTrigger("Hop");
         UniversalSpeed.SlowMo();  //slows down time to allow planning
@@ -103,21 +103,23 @@ void Update()
          potentialDest = GetGridPoint();
         lineRenderer.SetPosition(1, GetMousePos());
 
-        CheckUnderPointer();
+        CheckUnderPointerDrag();
     }
 
     void OnMouseUp()
     {
-        SetDestination(potentialDest);
+        destination = potentialDest;
         firstCommandGiven = true;
         UniversalSpeed.NormalSpeed();
+
+        CheckUnderPointerLift();
 
         if (spellbook)
             spellbook.CloseAbilities();
     }
 
 
-    void CheckUnderPointer()
+    void CheckUnderPointerDrag()
     {
         RaycastHit2D hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.mousePosition), Vector2.zero);
         if (hit.collider != null)
@@ -125,32 +127,70 @@ void Update()
             if (hit.collider.gameObject.GetComponent<Attacker>())
             {
                 currentTarget = hit.collider.gameObject;
-                lineRenderer.SetColors(enemyLine, enemyLine);
-                Debug.Log("attacking new target " + hit.collider.gameObject.transform.name);
+                lineRenderer.startColor = enemyLine;
+                lineRenderer.endColor = enemyLine;
+                //Debug.Log("attacking new target " + hit.collider.gameObject.transform.name);
             }
             else if(hit.collider.gameObject.GetComponent<AbilityIcon>())
             {
-                Debug.Log("Casting spell: " + hit.collider.gameObject.transform.name);
+                //hit.collider.gameObject.GetComponent<AbilityIcon>().PrepareToCast();
+
+                //Debug.Log("Casting spell: " + hit.collider.gameObject.transform.name);
             }
             else
             {
                 currentTarget = null;
-                lineRenderer.SetColors(moveLine, moveLine);
+                lineRenderer.startColor = moveLine;
+                lineRenderer.endColor = moveLine;
             }
         }
         else
         {
 
             currentTarget = null;
-            lineRenderer.SetColors(moveLine, moveLine);
+            lineRenderer.startColor = moveLine;
+            lineRenderer.endColor = moveLine;
         }
     }
-    
 
-    public void SetDestination(Vector3 pos)
+
+    void CheckUnderPointerLift()
     {
-        destination = pos;
+        RaycastHit2D hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.mousePosition), Vector2.zero);
+        if (hit.collider != null)
+        {
+            if (hit.collider.gameObject.GetComponent<Attacker>())
+            {
+                currentTarget = hit.collider.gameObject;
+                lineRenderer.startColor=enemyLine;
+                lineRenderer.endColor = enemyLine;
+                //Debug.Log("attacking new target " + hit.collider.gameObject.transform.name);
+            }
+            else if (hit.collider.gameObject.GetComponent<AbilityIcon>())
+            {
+                hit.collider.gameObject.GetComponent<AbilityIcon>().PrepareToCast();
+
+                //Debug.Log("Casting spell: " + hit.collider.gameObject.transform.name);
+            }
+            else
+            {
+                currentTarget = null;
+                lineRenderer.startColor = moveLine;
+                lineRenderer.endColor = moveLine;
+            }
+        }
+        else
+        {
+
+            currentTarget = null;
+            lineRenderer.startColor = moveLine;
+            lineRenderer.endColor = moveLine;
+        }
     }
+
+
+
+   
 
 
     public void StrikeCurrentTarget()

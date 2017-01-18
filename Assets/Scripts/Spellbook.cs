@@ -46,9 +46,12 @@ public class Spellbook : MonoBehaviour {
         foreach (AbilityIcon abIcon in abIcons)
         {
 
-            Destroy(abIcon.gameObject);
-           // Destroy(abIcon);
-            Debug.Log("destroyed icon");
+            //Destroy(abIcon.gameObject);
+
+            //Hide Gameobject instead of destroy
+            abIcon.transform.localScale = new Vector3(0, 0, 0);
+           
+           
         }
     }
 

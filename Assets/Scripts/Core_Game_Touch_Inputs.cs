@@ -20,7 +20,7 @@ public class Core_Game_Touch_Inputs : MonoBehaviour
     {
 
         Vector3 pos = GetGridPoint();
-        hero.SetDestination(pos);      
+        //hero.SetDestination(pos);      
     }
 
     Vector3 GetGridPoint()

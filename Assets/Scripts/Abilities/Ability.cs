@@ -8,6 +8,8 @@ public class Ability : MonoBehaviour {
     public AbilityIcon icon;
     public float castTime;
 
+    public GameObject target;
+
 	// Use this for initialization
 	void Start () {
 	
