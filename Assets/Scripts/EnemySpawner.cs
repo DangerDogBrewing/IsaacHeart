@@ -34,8 +34,8 @@ public class EnemySpawner : MonoBehaviour {
 
         float spawnsPerSecond = 1 / rate;
 
-        if (Time.deltaTime > spawnsPerSecond)
-            Debug.LogWarning("Spawn rate faster than frame rate");
+       // if (Time.deltaTime > spawnsPerSecond)
+           // Debug.LogWarning("Spawn rate faster than frame rate");
 
         float threshold = spawnsPerSecond * Time.deltaTime / 5;
 

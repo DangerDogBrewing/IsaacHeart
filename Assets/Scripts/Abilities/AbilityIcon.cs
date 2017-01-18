@@ -7,6 +7,7 @@ public class AbilityIcon : MonoBehaviour {
     public Ability ab;
     public Vector3 pos;
 
+
     public GameObject currentTarget;
     private bool choosingTarget = false;
 

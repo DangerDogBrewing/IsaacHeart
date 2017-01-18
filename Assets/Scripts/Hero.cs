@@ -13,7 +13,6 @@ public class Hero : MonoBehaviour
     private Vector3 destination;
     private Vector3 potentialDest;
     private LineRenderer lineRenderer;
-    private bool firstCommandGiven;
     public bool inRange;
 
     private Spellbook spellbook;
@@ -29,7 +28,8 @@ public class Hero : MonoBehaviour
         anim = GetComponent<Animator>();
         destination = transform.position;
         lineRenderer = GetComponent<LineRenderer>();
-        firstCommandGiven = false;
+        lineRenderer.numPositions = 2;
+
         inRange = false;
         currentTarget = null;
 
@@ -39,8 +39,8 @@ public class Hero : MonoBehaviour
 // Update is called once per frame
 void Update()
     {
+        lineRenderer.SetPosition(0, transform.position);
 
-        
         if ( currentTarget && !inRange ) //Currently an enemy target out of range, move towards
         {  
             destination = currentTarget.transform.position;
@@ -53,6 +53,7 @@ void Update()
             anim.SetBool("IsWalking", false);
             destination = currentTarget.transform.position;
             lineRenderer.SetPosition(1, destination);
+
         }
         else if( Vector3.Distance(transform.position, destination) > 0.1f ) //move target but no enemy
         {
@@ -63,6 +64,7 @@ void Update()
         else //idle
         {
             anim.SetBool("IsWalking", false);
+            lineRenderer.SetPosition(1, transform.position);
         }
 
         //If target no longer exists, stop attacking
@@ -75,41 +77,47 @@ void Update()
         //Slows down animations in SlowMo
         anim.speed = UniversalSpeed.speed;
 
-        //Sets draw line start at hero
-     if(firstCommandGiven)
-        lineRenderer.SetPosition(0, transform.position);
+        //Rotate if target/destination is behind
+        if ((destination.x < transform.position.x) && (transform.rotation.y == 0))
+        {
+            //transform.Rotate(0, 180, 0);
+            //transform.localRotation = Quaternion.Euler(0, 180, 0);
+            transform.eulerAngles = new Vector2(0, 180);
+            Debug.Log("face back quaternioin " + Quaternion.identity);
+        }
+        else if ((destination.x > transform.position.x) && (transform.rotation.y != 0))
+        {
+            //transform.Rotate(0, 180, 0);
+            transform.localRotation = Quaternion.Euler(0, 0, 0);
 
+            Debug.Log("face forward " + Quaternion.identity);
+        }
     }
 
     //Hero is selected, drag line to move to or attack enemy
     void OnMouseDown()
     {
-        Debug.Log("you got me!");
-        lineRenderer.numPositions = 2;
+       // Debug.Log("you got me!");
         lineRenderer.SetPosition(0, transform.position);
+       // lineRenderer.numPositions = 2;
         anim.SetTrigger("Hop");
         UniversalSpeed.SlowMo();  //slows down time to allow planning
-
-
-
+        
         if (spellbook)
            spellbook.OpenAbilities();
         
-
     }
 
     void OnMouseDrag()
     {
-         potentialDest = GetGridPoint();
         lineRenderer.SetPosition(1, GetMousePos());
+        lineRenderer.SetPosition(0, transform.position);
 
-        CheckUnderPointerDrag();
+       CheckUnderPointerDrag();
     }
 
     void OnMouseUp()
     {
-        destination = potentialDest;
-        firstCommandGiven = true;
         UniversalSpeed.NormalSpeed();
 
         CheckUnderPointerLift();
@@ -122,7 +130,7 @@ void Update()
     void CheckUnderPointerDrag()
     {
         RaycastHit2D hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.mousePosition), Vector2.zero);
-        if (hit.collider != null)
+        if (hit.collider)
         {
             if (hit.collider.gameObject.GetComponent<Attacker>())
             {
@@ -142,6 +150,8 @@ void Update()
                 currentTarget = null;
                 lineRenderer.startColor = moveLine;
                 lineRenderer.endColor = moveLine;
+                destination = GetGridPoint();
+
             }
         }
         else
@@ -150,6 +160,8 @@ void Update()
             currentTarget = null;
             lineRenderer.startColor = moveLine;
             lineRenderer.endColor = moveLine;
+            destination = GetGridPoint();
+
         }
     }
 
@@ -157,7 +169,7 @@ void Update()
     void CheckUnderPointerLift()
     {
         RaycastHit2D hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.mousePosition), Vector2.zero);
-        if (hit.collider != null)
+        if (hit.collider)
         {
             if (hit.collider.gameObject.GetComponent<Attacker>())
             {
@@ -177,6 +189,8 @@ void Update()
                 currentTarget = null;
                 lineRenderer.startColor = moveLine;
                 lineRenderer.endColor = moveLine;
+                destination = GetGridPoint();
+
             }
         }
         else
@@ -185,6 +199,8 @@ void Update()
             currentTarget = null;
             lineRenderer.startColor = moveLine;
             lineRenderer.endColor = moveLine;
+            destination = GetGridPoint();
+
         }
     }
 

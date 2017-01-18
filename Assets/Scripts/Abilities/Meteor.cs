@@ -22,7 +22,19 @@ public class Meteor : MonoBehaviour {
 	void Update () {
 
         if (ab.target)
-            transform.position = Vector3.MoveTowards(transform.position, ab.target.transform.position, speed * Time.deltaTime * UniversalSpeed.speed);
+        {
+            if (Vector3.Distance(transform.position, ab.target.transform.position) > 0.9f)
+            {
+                transform.position = Vector3.MoveTowards(transform.position, ab.target.transform.position, speed * Time.deltaTime * UniversalSpeed.speed);
+            }
+            else
+            {
+                // anim.explode
+                anim.SetTrigger("ExplodeTrigger");
+                Debug.Log("explode!");
+            }
+
+        }
         else
         {
             Debug.Log("No target for meteor");
@@ -30,4 +42,14 @@ public class Meteor : MonoBehaviour {
         }
 
     }
+
+
+
+    public void EndSpell()
+    {
+        Destroy(gameObject);
+    }
+
+
 }
+

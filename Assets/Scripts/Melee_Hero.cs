@@ -7,6 +7,8 @@ public class Melee_Hero : MonoBehaviour
 
     private Hero hero;
     private Animator anim;
+    public float range = 1;
+
 
     // Use this for initialization
     void Start()
@@ -21,34 +23,27 @@ public class Melee_Hero : MonoBehaviour
 
     }
 
-    void OnTriggerEnter2D(Collider2D col)
+
+    void FixedUpdate()
     {
-        GameObject obj = col.gameObject;
-        // Debug.Log(gameObject.name + " collided with " + obj.name);
-
-
-        if (obj == hero.currentTarget)
+        if (hero.currentTarget)
         {
-            hero.Attack(obj);
-            hero.inRange = true;
+            float distance = Vector3.Distance(hero.transform.position, hero.currentTarget.transform.position);
+            // Debug.Log("Distance to target " + distance);
+            if (distance <= range)
+            {
+                hero.Attack(hero.currentTarget);
+                hero.inRange = true;
+            }
+            else
+            {
+                hero.inRange = false;
+            }
         }
 
-        //if (col.GetComponent<Attacker>())
-        //  hero.Attack(obj);
 
     }
 
-    void OnTriggerExit2D(Collider2D col)
-    {
-        GameObject obj = col.gameObject;
-        // Debug.Log(gameObject.name + " collided with " + obj.name);
-
-
-        if (obj == hero.currentTarget)
-        {
-            
-            hero.inRange = false;
-        }
-    }
+    
 
 }
