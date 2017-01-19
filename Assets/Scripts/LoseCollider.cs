@@ -12,7 +12,7 @@ public class LoseCollider : MonoBehaviour {
 
     void OnTriggerEnter2D(Collider2D col)
     {
-        Attacker myAttacker = col.gameObject.GetComponent<Attacker>();
+        AI_Hero myAttacker = col.gameObject.GetComponent<AI_Hero>();
         if (myAttacker)
             levelmanager.LoadLevel("03b Lose");
 

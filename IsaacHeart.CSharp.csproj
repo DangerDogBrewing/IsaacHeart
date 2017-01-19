@@ -90,6 +90,7 @@
     <Compile Include="Assets\Anima2D\Scripts\SpriteMesh.cs" />
     <Compile Include="Assets\Anima2D\Scripts\SpriteMeshAnimation.cs" />
     <Compile Include="Assets\Anima2D\Scripts\SpriteMeshInstance.cs" />
+    <Compile Include="Assets\Scripts\AI_Hero.cs" />
     <Compile Include="Assets\Scripts\Abilities\Ability.cs" />
     <Compile Include="Assets\Scripts\Abilities\AbilityIcon.cs" />
     <Compile Include="Assets\Scripts\Abilities\Fire_Explosion.cs" />
@@ -100,6 +101,7 @@
     <Compile Include="Assets\Scripts\Condtions\Cond_Chill.cs" />
     <Compile Include="Assets\Scripts\Condtions\Condition.cs" />
     <Compile Include="Assets\Scripts\Condtions\Conditions.cs" />
+    <Compile Include="Assets\Scripts\Controllable_Hero.cs" />
     <Compile Include="Assets\Scripts\Core_Game_Touch_Inputs.cs" />
     <Compile Include="Assets\Scripts\EnemySpawner.cs" />
     <Compile Include="Assets\Scripts\FadeIn.cs" />

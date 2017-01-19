@@ -7,24 +7,26 @@ public class Hero : MonoBehaviour
 
 
     [Range(-1f, 1.5f)]
-    public float speed;
-
-    private Animator anim;
+    public float walkSpeed = 1f;
     public GameObject currentTarget;
-    private Vector3 destination;
-    private Vector3 potentialDest;
-    private LineRenderer lineRenderer;
     public bool inRange;
-    private Spellbook spellbook;
-    private Conditions conditions;
-    
     public float damage;
 
-    private Color moveLine = new Color(0.2F, 0.3F, 0.4F, 0.5F);
-    private Color enemyLine = new Color(0.9F, 0.3F, 0.4F, 0.5F);
+    public float currentWalkSpeed;
+    public float condiWalkSpeed;
+    public float animWalkSpeed;
+
+    protected Animator anim;
+    protected Vector3 destination;
+    protected Vector3 potentialDest;
+    protected LineRenderer lineRenderer;
+    protected Spellbook spellbook;
+    protected Conditions conditions;
+    protected Color moveLine = new Color(0.2F, 0.3F, 0.4F, 0.5F);
+    protected Color enemyLine = new Color(0.9F, 0.3F, 0.4F, 0.5F);
 
     // Use this for initialization
-    void Start()
+   public virtual void Start()
     {
         anim = GetComponent<Animator>();
         destination = transform.position;
@@ -32,42 +34,50 @@ public class Hero : MonoBehaviour
         lineRenderer.numPositions = 2;
 
         inRange = false;
-        currentTarget = null;
+        //currentTarget = null;
 
         spellbook = GetComponent<Spellbook>();
         conditions = GetComponent<Conditions>();
 
+        condiWalkSpeed = walkSpeed;
+        animWalkSpeed = walkSpeed;
 }
 
 // Update is called once per frame
 void Update()
     {
-        
+        currentWalkSpeed = Mathf.Min(condiWalkSpeed, animWalkSpeed);
+
         lineRenderer.SetPosition(0, transform.position);
 
         if ( currentTarget && !inRange ) //Currently an enemy target out of range, move towards
         {  
             destination = currentTarget.transform.position;
-            transform.position = Vector2.MoveTowards(transform.position, destination , speed * Time.deltaTime * UniversalSpeed.speed);
+            transform.position = Vector2.MoveTowards(transform.position, destination , currentWalkSpeed * Time.deltaTime * UniversalSpeed.speed);
             lineRenderer.SetPosition(1, destination);
             anim.SetBool("IsWalking", true);
+            anim.SetBool("IsAttacking", false);
+
         }
         else if (currentTarget && inRange) // has target and target is in range
         {
             anim.SetBool("IsWalking", false);
+            anim.SetBool("IsAttacking", true);
             destination = currentTarget.transform.position;
             lineRenderer.SetPosition(1, destination);
 
         }
         else if( Vector2.Distance(transform.position, destination) > 0.1f ) //move target but no enemy
         {
-            transform.position = Vector2.MoveTowards(transform.position, destination, speed * Time.deltaTime * UniversalSpeed.speed);
+            transform.position = Vector2.MoveTowards(transform.position, destination, currentWalkSpeed * Time.deltaTime * UniversalSpeed.speed);
             lineRenderer.SetPosition(1, destination);
             anim.SetBool("IsWalking", true);
+            anim.SetBool("IsAttacking", false);
         }
         else //idle
         {
             anim.SetBool("IsWalking", false);
+            anim.SetBool("IsAttacking", false);
             lineRenderer.SetPosition(1, transform.position);
         }
 
@@ -109,117 +119,7 @@ void Update()
 
 
 
-    //Hero is selected, drag line to move to or attack enemy
-    void OnMouseDown()
-    {
-       // Debug.Log("you got me!");
-        lineRenderer.SetPosition(0, transform.position);
-       // lineRenderer.numPositions = 2;
-        anim.SetTrigger("Hop");
-        UniversalSpeed.SlowMo();  //slows down time to allow planning
-        
-        if (spellbook)
-           spellbook.OpenAbilities();
-        
-    }
-
-    void OnMouseDrag()
-    {
-        lineRenderer.SetPosition(1, GetMousePos());
-        lineRenderer.SetPosition(0, transform.position);
-
-       CheckUnderPointerDrag();
-    }
-
-    void OnMouseUp()
-    {
-        UniversalSpeed.NormalSpeed();
-
-        CheckUnderPointerLift();
-
-        if (spellbook)
-            spellbook.CloseAbilities();
-    }
-
-
-    void CheckUnderPointerDrag()
-    {
-        RaycastHit2D hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.mousePosition), Vector2.zero);
-        if (hit.collider)
-        {
-            if (hit.collider.gameObject.GetComponent<Attacker>())
-            {
-                currentTarget = hit.collider.gameObject;
-                lineRenderer.startColor = enemyLine;
-                lineRenderer.endColor = enemyLine;
-                //Debug.Log("attacking new target " + hit.collider.gameObject.transform.name);
-            }
-            else if(hit.collider.gameObject.GetComponent<AbilityIcon>())
-            {
-                //hit.collider.gameObject.GetComponent<AbilityIcon>().PrepareToCast();
-
-                //Debug.Log("Casting spell: " + hit.collider.gameObject.transform.name);
-            }
-            else
-            {
-                currentTarget = null;
-                lineRenderer.startColor = moveLine;
-                lineRenderer.endColor = moveLine;
-                destination = GetGridPoint();
-
-            }
-        }
-        else
-        {
-
-            currentTarget = null;
-            lineRenderer.startColor = moveLine;
-            lineRenderer.endColor = moveLine;
-            destination = GetGridPoint();
-
-        }
-    }
-
-
-    void CheckUnderPointerLift()
-    {
-        RaycastHit2D hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.mousePosition), Vector2.zero);
-        if (hit.collider)
-        {
-            if (hit.collider.gameObject.GetComponent<Attacker>())
-            {
-                currentTarget = hit.collider.gameObject;
-                lineRenderer.startColor=enemyLine;
-                lineRenderer.endColor = enemyLine;
-                //Debug.Log("attacking new target " + hit.collider.gameObject.transform.name);
-            }
-            else if (hit.collider.gameObject.GetComponent<AbilityIcon>())
-            {
-                hit.collider.gameObject.GetComponent<AbilityIcon>().PrepareToCast();
-                destination = transform.position;
-
-                //Debug.Log("Casting spell: " + hit.collider.gameObject.transform.name);
-            }
-            else
-            {
-                currentTarget = null;
-                lineRenderer.startColor = moveLine;
-                lineRenderer.endColor = moveLine;
-                destination = GetGridPoint();
-
-            }
-        }
-        else
-        {
-
-            currentTarget = null;
-            lineRenderer.startColor = moveLine;
-            lineRenderer.endColor = moveLine;
-            destination = GetGridPoint();
-
-        }
-    }
-
+   
 
 
    
@@ -249,15 +149,14 @@ void Update()
 
 
 
-    public void SetSpeed(float speed)
+    public void SetAnimWalkSpeed(float speedMultiplier)
     {
-        this.speed = speed;
+        Debug.Log("Updating anim walk speed to " + speedMultiplier * walkSpeed);
+        animWalkSpeed = walkSpeed * speedMultiplier;
     }
 
-    public float GetSpeed()
-    {
-        return speed;
-    }
+
+
 
 
     public void Attack(GameObject obj)
@@ -276,37 +175,6 @@ void Update()
 
     }
 
-    Vector3 GetGridPoint()
-    {
-        float mouseX = Input.mousePosition.x;
-        float mouseY = Input.mousePosition.y;
-
-        float distanceFromCamera = 10f;
-
-        Vector3 weirdTriplet = new Vector3(mouseX, mouseY, distanceFromCamera);
-        Vector2 worldPos = Camera.main.ScreenToWorldPoint(weirdTriplet);
-
-        //Vector3 roundedPos = new Vector3(Mathf.RoundToInt(worldPos.x), Mathf.RoundToInt(worldPos.y), 0f);
-        Vector3 mousePos = new Vector3(worldPos.x, worldPos.y, 0f);
-
-        return mousePos;
-    }
-
-
-    Vector3 GetMousePos()
-    {
-        float mouseX = Input.mousePosition.x;
-        float mouseY = Input.mousePosition.y;
-
-        float distanceFromCamera = 10f;
-
-        Vector3 weirdTriplet = new Vector3(mouseX, mouseY, distanceFromCamera);
-        Vector2 worldPos = Camera.main.ScreenToWorldPoint(weirdTriplet);
-
-       Vector3 mapPos = new Vector3(worldPos.x, worldPos.y, 0f);
-
-        return mapPos;
-
-    }
+    
 
 }

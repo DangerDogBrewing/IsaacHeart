@@ -4,12 +4,15 @@ using System.Collections;
 public class EnemySpawner : MonoBehaviour {
 
     public GameObject[] myEnemies;
-	
+    public bool enabled = false;
     
     void Spawn(GameObject enemyPrefab)
     {
-        GameObject newEnemy = Instantiate(enemyPrefab, transform.position, Quaternion.identity) as GameObject;
-        newEnemy.transform.SetParent(transform);
+        if (enabled)
+        {
+            GameObject newEnemy = Instantiate(enemyPrefab, transform.position, Quaternion.identity) as GameObject;
+            newEnemy.transform.SetParent(transform);
+        }
     }
     
     

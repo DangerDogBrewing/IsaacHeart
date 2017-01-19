@@ -1,15 +1,15 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-[RequireComponent(typeof(Attacker))]
+[RequireComponent(typeof(AI_Hero))]
 public class Fox : MonoBehaviour {
 
-    private Attacker attacker;
+    private AI_Hero attacker;
     private Animator anim;
 
     // Use this for initialization
     void Start () {
-        attacker = GetComponent<Attacker>();
+        attacker = GetComponent<AI_Hero>();
         anim = GetComponent<Animator>();
 
     }

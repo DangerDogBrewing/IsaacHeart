@@ -66,7 +66,7 @@ public class AbilityIcon : MonoBehaviour {
             RaycastHit2D hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.mousePosition), Vector2.zero);
             if (hit.collider != null)
             {
-                if (hit.collider.gameObject.GetComponent<Attacker>())
+                if (hit.collider.gameObject.GetComponent<AI_Hero>())
                 {
                     currentTarget = hit.collider.gameObject;
                     CastSpell();

@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Attacker : MonoBehaviour {
+public class Attacker  : MonoBehaviour {
 
 
     [Range(-1f, 1.5f)] public float currentSpeed;
