@@ -29,7 +29,7 @@ public class Projectile : MonoBehaviour {
     {
         GameObject obj = col.gameObject;
 
-        if(obj.GetComponent<Attacker>())
+        if((obj.GetComponent<Attacker>()) && (obj == target))
         {
             obj.GetComponent<Health>().TakeDamage(damage);
             Destroy(gameObject);

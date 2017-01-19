@@ -11,11 +11,15 @@ public class Attacker : MonoBehaviour {
 
     private Animator anim;
     GameObject currentTarget;
+    private Conditions conditions;
+
 
 
     // Use this for initialization
     void Start () {
         anim = GetComponent<Animator>();
+        conditions = GetComponent<Conditions>();
+
 
     }
 
@@ -29,6 +33,8 @@ public class Attacker : MonoBehaviour {
 
         if (currentTarget == null)
             anim.SetBool("IsAttacking", false);
+
+        conditions.ApplyConditions();
 
 
     }

@@ -16,6 +16,7 @@ public class Hero : MonoBehaviour
     private LineRenderer lineRenderer;
     public bool inRange;
     private Spellbook spellbook;
+    private Conditions conditions;
     
     public float damage;
 
@@ -34,6 +35,7 @@ public class Hero : MonoBehaviour
         currentTarget = null;
 
         spellbook = GetComponent<Spellbook>();
+        conditions = GetComponent<Conditions>();
 
 }
 
@@ -101,6 +103,8 @@ void Update()
         //Changes Z order so things lower on y axis are closer to screen
         transform.position = new Vector3(transform.position.x, transform.position.y, (transform.position.y - 10) );
 
+
+        conditions.ApplyConditions();
     }
 
 

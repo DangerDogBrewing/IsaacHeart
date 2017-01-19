@@ -2,19 +2,26 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(Condition))]
-public class Cond_Chill : MonoBehaviour {
+public class Cond_Chill : Condition {
 
+    private float originalSpeed;
+    public float chillSpeed = 0.3f;
 
-    private Condition cond;
+    public Cond_Chill(float duration_in, GameObject target_in) : base (duration_in, target_in)
+    {
+        originalSpeed = target.GetComponent<Attacker>().currentSpeed;
+    }
 
-	// Use this for initialization
-	void Start () {
-        cond = GetComponent<Condition>();
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+    public override void ApplyCondition()
+    {
+        Debug.Log("applying chill from " + origin + " to " + target);
+        target.GetComponent<Attacker>().SetSpeed(originalSpeed * chillSpeed);
+    }
+
+    public override void EndCondition()
+    {
+        Debug.Log("ending chill from " + origin + " to " + target);
+        target.GetComponent<Attacker>().SetSpeed(originalSpeed);
+
+    }
 }

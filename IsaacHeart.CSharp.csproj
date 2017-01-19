@@ -74,14 +74,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\Anima2D\Examples\Scripts\CharacterMotion.cs" />
-    <Compile Include="Assets\Anima2D\Examples\Scripts\Follow.cs" />
-    <Compile Include="Assets\Anima2D\Examples\Scripts\SkinnedMeshCombiner.cs" />
-    <Compile Include="Assets\Anima2D\Examples\Scripts\SpringBone.cs" />
-    <Compile Include="Assets\Anima2D\Examples\Scripts\SpringCollider.cs" />
-    <Compile Include="Assets\Anima2D\Examples\Scripts\SpringManager.cs" />
-    <Compile Include="Assets\Anima2D\Examples\Scripts\SpriteCycle.cs" />
-    <Compile Include="Assets\Anima2D\Examples\Scripts\SpriteCycleParallax.cs" />
     <Compile Include="Assets\Anima2D\Scripts\Bone2D.cs" />
     <Compile Include="Assets\Anima2D\Scripts\Control.cs" />
     <Compile Include="Assets\Anima2D\Scripts\EditorUpdaterProxy.cs" />
@@ -105,6 +97,7 @@
     <Compile Include="Assets\Scripts\Attacker.cs" />
     <Compile Include="Assets\Scripts\Condtions\Cond_Chill.cs" />
     <Compile Include="Assets\Scripts\Condtions\Condition.cs" />
+    <Compile Include="Assets\Scripts\Condtions\Conditions.cs" />
     <Compile Include="Assets\Scripts\Core_Game_Touch_Inputs.cs" />
     <Compile Include="Assets\Scripts\EnemySpawner.cs" />
     <Compile Include="Assets\Scripts\FadeIn.cs" />
@@ -113,7 +106,6 @@
     <Compile Include="Assets\Scripts\Health.cs" />
     <Compile Include="Assets\Scripts\Hero.cs" />
     <Compile Include="Assets\Scripts\LevelManager.cs" />
-    <Compile Include="Assets\Scripts\LineRendererTest.cs" />
     <Compile Include="Assets\Scripts\Lizard.cs" />
     <Compile Include="Assets\Scripts\LoseCollider.cs" />
     <Compile Include="Assets\Scripts\Melee_Hero.cs" />
@@ -130,8 +122,6 @@
     <Compile Include="Assets\Scripts\UniversalSpeed.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Assets\Anima2D\Examples\Shaders\Unlit-Alpha-Cull-off.shader" />
-    <None Include="Assets\Anima2D\Examples\Shaders\VertexLitOneDirectional.shader" />
     <None Include="Assets\Anima2D\Licenses.txt" />
     <None Include="Assets\Anima2D\Readme.txt" />
     <None Include="Assets\Anima2D\Version.txt" />

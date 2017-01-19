@@ -32,7 +32,7 @@ public class Ice_Explosion : MonoBehaviour {
         }
         else
         {
-            Debug.Log("No target for meteor");
+            Debug.Log("No target for ice_explosion");
             Destroy(gameObject);
         }
 
@@ -42,6 +42,16 @@ public class Ice_Explosion : MonoBehaviour {
 
     public void EndSpell()
     {
+        Conditions conds = ab.target.GetComponent<Conditions>();
+        if(conds)
+        {
+            Condition chill = new Cond_Chill(5, ab.target);
+            conds.AddCondition(chill);
+        }
+        else
+            Debug.Log("target " + ab.target.name + " has no conditions class");
+        
+
         Destroy(gameObject);
     }
 

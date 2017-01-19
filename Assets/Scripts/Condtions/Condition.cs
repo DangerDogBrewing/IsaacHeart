@@ -2,18 +2,20 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Condition : MonoBehaviour {
+public abstract class Condition : MonoBehaviour {
 
-    public float duration;
-    public GameObject target;
+    public  float duration;
+    public  GameObject target;
+    public Hero origin;
+    
+    protected Condition(float duration_in, GameObject target_in)
+    {
+        duration = duration_in;
+        target = target_in;
+    }
 
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+    public abstract void ApplyCondition();
+    public abstract void EndCondition();
+
+
 }

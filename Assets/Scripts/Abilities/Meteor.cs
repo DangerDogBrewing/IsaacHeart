@@ -9,6 +9,7 @@ public class Meteor : MonoBehaviour {
     public float speed;
     public Animator anim;
     private bool followTarget = true;
+    public float damage;
 
     private Ability ab;
 
@@ -21,6 +22,8 @@ public class Meteor : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+
+        
 
         if (ab.target) 
         {
@@ -40,11 +43,15 @@ public class Meteor : MonoBehaviour {
         else
         {
             Debug.Log("No target for meteor");
-            Destroy(gameObject);
+           // Destroy(gameObject);
         }
 
     }
 
+    public void DamageTarget()
+    {
+        ab.target.GetComponent<Health>().TakeDamage(damage);
+    }
 
 
     public void EndSpell()
