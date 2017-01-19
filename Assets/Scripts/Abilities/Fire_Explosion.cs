@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(Ability))]
-public class Ice_Explosion : MonoBehaviour {
+public class Fire_Explosion : MonoBehaviour {
 
 
     public float speed;
@@ -45,8 +45,8 @@ public class Ice_Explosion : MonoBehaviour {
         Conditions conds = ab.target.GetComponent<Conditions>();
         if(conds)
         {
-            Condition chill = new Cond_Chill(5, ab.target);
-            conds.AddCondition(chill);
+            Condition burn = new Cond_Burn(5, ab.target);
+            conds.AddCondition(burn);
 
         }
 

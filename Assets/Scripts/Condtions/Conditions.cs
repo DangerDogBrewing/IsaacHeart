@@ -32,7 +32,7 @@ public class Conditions : MonoBehaviour {
     {
         for(int i = 0; i < cond_list.Count; i++)
         {
-            cond_list[i].duration -= Time.deltaTime;
+            cond_list[i].duration -= Time.deltaTime * UniversalSpeed.speed;
             if (cond_list[i].duration <= 0)
             {
                 cond_list[i].EndCondition();

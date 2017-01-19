@@ -92,9 +92,11 @@
     <Compile Include="Assets\Anima2D\Scripts\SpriteMeshInstance.cs" />
     <Compile Include="Assets\Scripts\Abilities\Ability.cs" />
     <Compile Include="Assets\Scripts\Abilities\AbilityIcon.cs" />
+    <Compile Include="Assets\Scripts\Abilities\Fire_Explosion.cs" />
     <Compile Include="Assets\Scripts\Abilities\Ice_Explosion.cs" />
     <Compile Include="Assets\Scripts\Abilities\Meteor.cs" />
     <Compile Include="Assets\Scripts\Attacker.cs" />
+    <Compile Include="Assets\Scripts\Condtions\Cond_Burn.cs" />
     <Compile Include="Assets\Scripts\Condtions\Cond_Chill.cs" />
     <Compile Include="Assets\Scripts\Condtions\Condition.cs" />
     <Compile Include="Assets\Scripts\Condtions\Conditions.cs" />
