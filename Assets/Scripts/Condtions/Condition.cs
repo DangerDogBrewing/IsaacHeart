@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class Condition : MonoBehaviour {
+public abstract class Condition : ScriptableObject {
 
     public  float duration;
     public  GameObject target;

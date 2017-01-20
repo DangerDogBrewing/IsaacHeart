@@ -54,7 +54,7 @@ public class Fire_Explosion : MonoBehaviour {
             Debug.Log("target " + ab.target.name + " has no conditions class");
         
 
-        Destroy(gameObject);
+        Destroy(ab.gameObject);
     }
 
 

@@ -4,7 +4,24 @@ using UnityEngine;
 
 public class Controllable_Hero : Hero {
 
-    
+    public Vector2 formationPos;
+
+
+    public override void Start()
+    {
+        base.Start();
+
+        DontDestroyOnLoad(transform.gameObject);
+        if (formationPos == new Vector2(0, 0))
+            formationPos = transform.position;
+    }
+
+    void OnLevelWasLoaded()
+    {
+        //Puts heros into their formation position (if it exists)
+        transform.position = formationPos;
+        destination = transform.position;
+    }
 
     //Hero is selected, drag line to move to or attack enemy
     void OnMouseDown()

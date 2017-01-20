@@ -49,12 +49,11 @@ public class Ice_Explosion : MonoBehaviour {
             conds.AddCondition(chill);
 
         }
-
         else
             Debug.Log("target " + ab.target.name + " has no conditions class");
         
 
-        Destroy(gameObject);
+        Destroy(ab.gameObject);
     }
 
 

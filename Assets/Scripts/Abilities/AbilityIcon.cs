@@ -6,15 +6,16 @@ public class AbilityIcon : MonoBehaviour {
 
     public Ability ab;
     public Vector3 pos;
-
+    public Hero caster;
 
     public GameObject currentTarget;
     private bool choosingTarget = false;
+    
 
 	// Use this for initialization
 	void Start () {
-		
-	}
+
+    }
 	
 	// Update is called once per frame
 	void Update () {
@@ -39,9 +40,8 @@ public class AbilityIcon : MonoBehaviour {
 
     void CastSpell()
     {
-        Debug.Log("casting " + ab.name + " on " + currentTarget.name);
-        ab.target = currentTarget;
-        Instantiate(ab);
+        if (caster)
+            caster.CastSpell(ab, currentTarget);        
     }
 
     void OnMouseDown()

@@ -16,6 +16,9 @@ public class Hero : MonoBehaviour
     public float condiWalkSpeed;
     public float animWalkSpeed;
 
+    public float attackSpeed = 1;
+    public float condiAttackSpeed;
+
     protected Animator anim;
     protected Vector3 destination;
     protected Vector3 potentialDest;
@@ -28,6 +31,7 @@ public class Hero : MonoBehaviour
     // Use this for initialization
    public virtual void Start()
     {
+
         anim = GetComponent<Animator>();
         destination = transform.position;
         lineRenderer = GetComponent<LineRenderer>();
@@ -41,12 +45,19 @@ public class Hero : MonoBehaviour
 
         condiWalkSpeed = walkSpeed;
         animWalkSpeed = walkSpeed;
+        condiAttackSpeed = attackSpeed;
+
+        
 }
 
+
+    
+
+
 // Update is called once per frame
-void Update()
+    void Update()
     {
-        currentWalkSpeed = Mathf.Min(condiWalkSpeed, animWalkSpeed);
+        currentWalkSpeed = Mathf.Min(condiWalkSpeed, animWalkSpeed);       
 
         lineRenderer.SetPosition(0, transform.position);
 
@@ -89,7 +100,7 @@ void Update()
         }
 
         //Slows down animations in SlowMo
-        anim.speed = UniversalSpeed.speed;
+        anim.speed = UniversalSpeed.speed * condiAttackSpeed;
 
         //Rotate if target/destination is behind
         if ((destination.x < transform.position.x) && (transform.rotation.y == 0))
@@ -164,7 +175,7 @@ void Update()
         if (currentTarget != null)
         {
             anim.SetBool("IsAttacking", true);
-            destination = transform.position;
+            //destination = transform.position;
         }
         else
         {
@@ -176,5 +187,11 @@ void Update()
     }
 
     
+    public void CastSpell(Ability ab, GameObject spellTarget)
+    {
+        Debug.Log("casting " + ab.name + " on " + spellTarget.name);
+        ab.target = spellTarget;
+        Instantiate(ab);
+    }
 
 }

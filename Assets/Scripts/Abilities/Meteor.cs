@@ -34,9 +34,10 @@ public class Meteor : MonoBehaviour {
             else
             {
                 // anim.explode
+                
                 anim.SetTrigger("ExplodeTrigger");
                 followTarget = false;
-                //Debug.Log("explode!");
+               // Debug.Log("explode!");
             }
 
         }
@@ -50,7 +51,8 @@ public class Meteor : MonoBehaviour {
 
     public void DamageTarget()
     {
-        ab.target.GetComponent<Health>().TakeDamage(damage);
+        if(ab.target)
+            ab.target.GetComponent<Health>().TakeDamage(damage);
     }
 
 
