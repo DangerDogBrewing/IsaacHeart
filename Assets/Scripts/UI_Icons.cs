@@ -6,14 +6,11 @@ using UnityEngine;
 public class UI_Icons : MonoBehaviour {
 
     private Vector3[] iconPosition = new Vector3[4];
-
+    private AbilityIcon[] icons;
 
     // Use this for initialization
     void Start () {
-        iconPosition[0] = new Vector3(675f, -390f, 0);
-        iconPosition[1] = new Vector3(535f, -390f, 0);
-        iconPosition[2] = new Vector3(395f, -390f, 0);
-        iconPosition[3] = new Vector3(255f, -390f, 0);
+        icons = GetComponentsInChildren<AbilityIcon>();
     }
 
     public AbilityIcon[] InitializeAbIcons(Ability[] abilities, Hero caster)

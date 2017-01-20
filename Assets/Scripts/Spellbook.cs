@@ -17,6 +17,7 @@ public class Spellbook : MonoBehaviour {
 
         abIcons = new AbilityIcon[abilities.Length];
         caster = GetComponent<Hero>();
+
         OnLevelWasLoaded();
     }
 
@@ -27,18 +28,31 @@ public class Spellbook : MonoBehaviour {
         {
             Debug.LogWarning("no icon parent!");
         }
+        else
+            abIcons = ui_icons.GetComponentsInChildren<AbilityIcon>();
 
-        abIcons = ui_icons.InitializeAbIcons(abilities, caster);
+        //abIcons = ui_icons.InitializeAbIcons(abilities, caster);
         CloseAbilities();
     }
 
 
     public void OpenAbilities()
     {
-        foreach (AbilityIcon abIcon in abIcons)
+
+        int counter = 0;
+        foreach (Ability ab in abilities)
         {
-            abIcon.transform.localScale = new Vector3(1f, 1f, 1f);
+            ab.icon.caster = caster;
+            abIcons[counter].Copy(ab.icon);
+            abIcons[counter].transform.localScale = new Vector3(1f, 1f, 1f);
+            counter++;
         }
+
+
+      //  foreach (AbilityIcon abIcon in abIcons)
+      //  {
+       //     abIcon.transform.localScale = new Vector3(1f, 1f, 1f);
+       // }
     }
 
     public void CloseAbilities()
