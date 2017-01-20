@@ -5,7 +5,9 @@ using UnityEngine;
 public class Controllable_Hero : Hero {
 
     public Vector2 formationPos;
+    public bool isSelected = false;
 
+    private SpriteRenderer selectionCircle;
 
     public override void Start()
     {
@@ -14,6 +16,20 @@ public class Controllable_Hero : Hero {
         DontDestroyOnLoad(transform.gameObject);
         if (formationPos == new Vector2(0, 0))
             formationPos = transform.position;
+
+        Transform selectionCircleChild = transform.FindChild("Selection_Circle");
+        selectionCircle = selectionCircleChild.GetComponent<SpriteRenderer>();
+        
+    }
+
+    public override void Update()
+    {
+        base.Update();
+        if (isSelected)
+            selectionCircle.enabled = true;
+        else
+            selectionCircle.enabled = false;
+
     }
 
     void OnLevelWasLoaded()
@@ -26,7 +42,7 @@ public class Controllable_Hero : Hero {
     //Hero is selected, drag line to move to or attack enemy
     void OnMouseDown()
     {
-        // Debug.Log("you got me!");
+         Debug.Log("you got me!");
         lineRenderer.SetPosition(0, transform.position);
         // lineRenderer.numPositions = 2;
         anim.SetTrigger("Hop");
@@ -35,6 +51,8 @@ public class Controllable_Hero : Hero {
         if (spellbook)
             spellbook.OpenAbilities();
 
+        UnselectOthers();
+        isSelected = true;
     }
 
     void OnMouseDrag()
@@ -169,5 +187,13 @@ public class Controllable_Hero : Hero {
     }
 
 
+    void UnselectOthers()
+    {
+        Controllable_Hero[] heroes = FindObjectsOfType<Controllable_Hero>();
+        foreach(Controllable_Hero h in heroes)
+        {
+            h.isSelected = false;
+        }
+    }
 
 }

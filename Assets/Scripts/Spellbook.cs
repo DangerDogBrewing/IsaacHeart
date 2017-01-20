@@ -17,10 +17,7 @@ public class Spellbook : MonoBehaviour {
 
         abIcons = new AbilityIcon[abilities.Length];
         caster = GetComponent<Hero>();
-
-        //Also call everything from here
         OnLevelWasLoaded();
-
     }
 
     void OnLevelWasLoaded()
@@ -32,6 +29,7 @@ public class Spellbook : MonoBehaviour {
         }
 
         abIcons = ui_icons.InitializeAbIcons(abilities, caster);
+        CloseAbilities();
     }
 
 

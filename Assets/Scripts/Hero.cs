@@ -55,7 +55,7 @@ public class Hero : MonoBehaviour
 
 
 // Update is called once per frame
-    void Update()
+   public virtual void Update()
     {
         currentWalkSpeed = Mathf.Min(condiWalkSpeed, animWalkSpeed);       
 
@@ -162,7 +162,7 @@ public class Hero : MonoBehaviour
 
     public void SetAnimWalkSpeed(float speedMultiplier)
     {
-        Debug.Log("Updating anim walk speed to " + speedMultiplier * walkSpeed);
+        //Debug.Log("Updating anim walk speed to " + speedMultiplier * walkSpeed);
         animWalkSpeed = walkSpeed * speedMultiplier;
     }
 

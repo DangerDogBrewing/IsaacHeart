@@ -24,10 +24,14 @@ public class UI_Icons : MonoBehaviour {
         foreach (Ability ab in abilities)
         {
             AbilityIcon abIcon = Instantiate(ab.icon);
-            abIcon.transform.parent = transform;
+            abIcon.transform.SetParent(transform, false);
+
+            //abIcon.transform.parent = transform;
             abIcon.caster = caster;
-            abIcon.transform.position = new Vector3(iconPosition[counter].x * 0.1f, iconPosition[counter].y * 0.1f, iconPosition[counter].z * 0.1f);
-            abIcon.transform.localScale = new Vector3(1f, 1f, 1f);
+            //abIcon.transform.position = new Vector3(iconPosition[counter].x * 0.1f, iconPosition[counter].y * 0.1f, iconPosition[counter].z * 0.1f);
+            //abIcon.transform.localScale = new Vector3(1f, 1f, 1f);
+            abIcon.transform.position = iconPosition[counter];
+
 
             // abIcon.transform.localScale = new Vector3(level_canvas.transform.localScale.x, level_canvas.transform.localScale.y, level_canvas.transform.localScale.z);
 
