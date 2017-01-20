@@ -6,8 +6,7 @@ public class Hero : MonoBehaviour
 {
 
 
-    [Range(-1f, 1.5f)]
-    public float walkSpeed = 1f;
+    public float walkSpeed = 10f;
     public GameObject currentTarget;
     public bool inRange;
     public float damage;
@@ -27,6 +26,7 @@ public class Hero : MonoBehaviour
     protected Conditions conditions;
     protected Color moveLine = new Color(0.2F, 0.3F, 0.4F, 0.5F);
     protected Color enemyLine = new Color(0.9F, 0.3F, 0.4F, 0.5F);
+    protected float yceiling = 45f;
 
     // Use this for initialization
    public virtual void Start()
@@ -122,7 +122,7 @@ public class Hero : MonoBehaviour
         }
 
         //Changes Z order so things lower on y axis are closer to screen
-        transform.position = new Vector3(transform.position.x, transform.position.y, (transform.position.y - 10) );
+        transform.position = new Vector3(transform.position.x, transform.position.y, (transform.position.y - yceiling) );
 
 
         conditions.ApplyConditions();

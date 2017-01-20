@@ -16,7 +16,7 @@ public class Meteor : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 
-        transform.position = new Vector3(0, 10, 0);
+        transform.position = new Vector3(-55, 55, 0);
         ab = GetComponent<Ability>();
 	}
 	
@@ -27,7 +27,7 @@ public class Meteor : MonoBehaviour {
 
         if (ab.target) 
         {
-            if ((Vector2.Distance(transform.position, ab.target.transform.position) > 0.9f) && followTarget )
+            if ((Vector2.Distance(transform.position, ab.target.transform.position) > 9f) && followTarget )
             {
                 transform.position = Vector2.MoveTowards(transform.position, ab.target.transform.position, speed * Time.deltaTime * UniversalSpeed.speed);
             }

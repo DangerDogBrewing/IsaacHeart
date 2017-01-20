@@ -123,6 +123,7 @@
     <Compile Include="Assets\Scripts\Shredder.cs" />
     <Compile Include="Assets\Scripts\Spellbook.cs" />
     <Compile Include="Assets\Scripts\SporeDisplay.cs" />
+    <Compile Include="Assets\Scripts\UI_Icons.cs" />
     <Compile Include="Assets\Scripts\UniversalSpeed.cs" />
   </ItemGroup>
   <ItemGroup>
