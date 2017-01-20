@@ -41,7 +41,9 @@ public class AbilityIcon : MonoBehaviour {
     void CastSpell()
     {
         if (caster)
-            caster.CastSpell(ab, currentTarget);        
+            caster.CastSpell(ab, currentTarget);
+        else
+            Debug.Log("No caster for spell " + ab.name);        
     }
 
     void OnMouseDown()

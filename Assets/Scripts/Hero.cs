@@ -191,7 +191,7 @@ public class Hero : MonoBehaviour
     {
         Debug.Log("casting " + ab.name + " on " + spellTarget.name);
         ab.target = spellTarget;
-        Instantiate(ab);
+        Instantiate(ab);       
     }
 
 }

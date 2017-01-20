@@ -37,14 +37,13 @@ public class Spellbook : MonoBehaviour {
             icon_parent = new GameObject("Icons");
             Instantiate(icon_parent);
         }
+
+        InitializeAbIcons();
+
     }
+    
 
-    // Update is called once per frame
-    void Update () {
-		
-	}
-
-    public void OpenAbilities()
+    public void InitializeAbIcons()
     {
         int counter = 0;
         foreach (Ability ab in abilities)
@@ -53,11 +52,20 @@ public class Spellbook : MonoBehaviour {
             abIcon.caster = caster;
             abIcon.transform.parent = icon_parent.transform;
             abIcons[counter] = abIcon;
-
-            abIcon.transform.position = transform.position + iconOffset[counter];
-
-            
             counter++;
+            abIcon.transform.localScale = new Vector3(0, 0, 0);
+        }
+    }
+
+    public void OpenAbilities()
+    {
+        int counter = 0;
+        foreach (AbilityIcon abIcon in abIcons)
+        {            
+            abIcon.transform.localScale = new Vector3(.2f, .2f, 0);
+            abIcon.transform.position = transform.position + iconOffset[counter];
+            counter++;
+
         }
 
     }
@@ -65,16 +73,19 @@ public class Spellbook : MonoBehaviour {
     public void CloseAbilities()
     {
         foreach (AbilityIcon abIcon in abIcons)
-        {
-
-            //Destroy(abIcon.gameObject);
-
+        {            
             //Hide Gameobject instead of destroy
-            abIcon.transform.localScale = new Vector3(0, 0, 0);
-           
+            abIcon.transform.localScale = new Vector3(0, 0, 0);         
            
         }
     }
 
+    public void DestroyAbIcons()
+    {
+        foreach (AbilityIcon abIcon in abIcons)
+        {
+            Destroy(abIcon);
+        }
+    }
 
 }
