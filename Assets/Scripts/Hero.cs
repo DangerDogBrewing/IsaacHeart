@@ -1,6 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System;
+using UnityEngine.UI;
+using System.Text.RegularExpressions;
 
 public class Hero : MonoBehaviour
 {
@@ -17,6 +19,8 @@ public class Hero : MonoBehaviour
 
     public float attackSpeed = 1;
     public float condiAttackSpeed;
+    
+
 
     protected Animator anim;
     protected Vector3 destination;
@@ -27,9 +31,14 @@ public class Hero : MonoBehaviour
     protected Color moveLine = new Color(0.2F, 0.3F, 0.4F, 0.5F);
     protected Color enemyLine = new Color(0.9F, 0.3F, 0.4F, 0.5F);
     protected float yceiling = 45f;
+    protected Globals globals;
+    protected bool isSelected = false;
+    protected SpriteRenderer selectionCircle;
+    protected Image uiSelectedFace;
+    protected SpriteRenderer myFace;
 
     // Use this for initialization
-   public virtual void Start()
+    public virtual void Start()
     {
 
         anim = GetComponent<Animator>();
@@ -47,15 +56,32 @@ public class Hero : MonoBehaviour
         animWalkSpeed = walkSpeed;
         condiAttackSpeed = attackSpeed;
 
-        
-}
+        globals = FindObjectOfType<Globals>();
+
+        Transform selectionCircleChild = transform.FindChild("Selection_Circle");
+        selectionCircle = selectionCircleChild.GetComponent<SpriteRenderer>();
+        selectionCircle.enabled = false;
+
+        uiSelectedFace = GameObject.Find("SelectedFace/Center/FaceImage").GetComponent<Image>();
+        if (uiSelectedFace == null)
+            Debug.LogWarning("Could not find UI Face element");
+
+        //Iterate through all children to find "Head"
+        Transform faceobject = FindFace(transform);
+
+        if (faceobject == null)
+            Debug.LogWarning("Wheeeres my faaaaace");
+        else
+            myFace = faceobject.GetComponent<SpriteRenderer>();
+
+    }
 
 
-    
 
 
-// Update is called once per frame
-   public virtual void Update()
+
+    // Update is called once per frame
+    public virtual void Update()
     {
         currentWalkSpeed = Mathf.Min(condiWalkSpeed, animWalkSpeed);       
 
@@ -129,7 +155,31 @@ public class Hero : MonoBehaviour
     }
 
 
+    protected virtual void OnMouseDown()
+    {
 
+        //An ability is queued up
+        if (globals.selectedAbIcon && globals.selectedAbIcon.isSelected)
+        {
+            if (globals.selectedAbIcon.caster != this) // Cast spell on me
+            {
+                globals.selectedAbIcon.caster.CastSpell(globals.selectedAbIcon.ab, this.gameObject);
+                globals.selectedAbIcon.Unselect();
+
+            }
+            else //Selecting self 
+            {
+                globals.selectedAbIcon.Unselect();
+                Debug.Log("Selecting self with own ability");
+            }
+        }
+        else //No ability queued up
+        {
+            SelectMe();
+            globals.selectedHero = this;
+        }
+
+    }
    
 
 
@@ -193,5 +243,47 @@ public class Hero : MonoBehaviour
         ab.target = spellTarget;
         Instantiate(ab);       
     }
+
+
+    void SelectMe()
+    {
+        UnselectOthers();
+        selectionCircle.enabled = true;
+        isSelected = true;
+        uiSelectedFace.sprite = myFace.sprite;
+    }
+
+    void UnselectOthers()
+    {
+        Hero[] heroes = FindObjectsOfType<Hero>();
+        foreach (Hero h in heroes)
+        {
+            h.isSelected = false;
+            h.selectionCircle.enabled = false;
+        }
+    }
+
+    //Recursively looks through all children, and if it finds "head" piece, returns that
+    protected Transform FindFace(Transform transform_in)
+    {
+        foreach (Transform child in transform_in)
+        {
+            //Debug.Log("child component " + child.gameObject.name);
+            if (Regex.IsMatch(child.gameObject.name, "Head_Hair", RegexOptions.None))
+            {               
+                //Debug.Log("found it!");
+                return child;
+            }
+            else
+            {
+                Transform grandchild = FindFace(child);
+                if (grandchild != null)
+                    return grandchild;
+            }            
+        }
+
+        return null;
+    }
+
 
 }

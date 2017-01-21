@@ -25,7 +25,7 @@ public class Cond_Chill : Condition {
 
         float newAttackSpeed = originalAttackSpeed * chillSpeed;
 
-        if (newWalkSpeed < target.GetComponent<Hero>().condiAttackSpeed)
+        if (newAttackSpeed < target.GetComponent<Hero>().condiAttackSpeed)
             target.GetComponent<Hero>().condiAttackSpeed = newAttackSpeed;
     }
 
@@ -33,6 +33,8 @@ public class Cond_Chill : Condition {
     {
         // Debug.Log("ending chill from " + origin + " to " + target);
         target.GetComponent<Hero>().condiAttackSpeed = originalAttackSpeed;
+        target.GetComponent<Hero>().condiWalkSpeed = originalWalkSpeed;
+
 
     }
 }

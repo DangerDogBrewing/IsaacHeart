@@ -107,6 +107,7 @@
     <Compile Include="Assets\Scripts\FadeIn.cs" />
     <Compile Include="Assets\Scripts\Fox.cs" />
     <Compile Include="Assets\Scripts\GameTimer.cs" />
+    <Compile Include="Assets\Scripts\Globals.cs" />
     <Compile Include="Assets\Scripts\Health.cs" />
     <Compile Include="Assets\Scripts\Hero.cs" />
     <Compile Include="Assets\Scripts\LevelManager.cs" />
@@ -121,6 +122,7 @@
     <Compile Include="Assets\Scripts\Ranged_Hero.cs" />
     <Compile Include="Assets\Scripts\Shooter.cs" />
     <Compile Include="Assets\Scripts\Shredder.cs" />
+    <Compile Include="Assets\Scripts\Singleton.cs" />
     <Compile Include="Assets\Scripts\Spellbook.cs" />
     <Compile Include="Assets\Scripts\SporeDisplay.cs" />
     <Compile Include="Assets\Scripts\UI_Icons.cs" />

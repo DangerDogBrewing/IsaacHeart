@@ -8,8 +8,7 @@ public class AI_Hero : Hero {
 
     public override void Start()
     {
-        base.Start();
-         
+        base.Start();         
 
     }
 
