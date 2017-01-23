@@ -7,7 +7,9 @@ public abstract class Condition : ScriptableObject {
     public  float duration;
     public  GameObject target;
     public Hero origin;
-    
+    public string shortName;
+
+
     protected Condition(float duration_in, GameObject target_in)
     {
         duration = duration_in;

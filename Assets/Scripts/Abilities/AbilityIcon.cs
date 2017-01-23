@@ -14,6 +14,7 @@ public class AbilityIcon : MonoBehaviour {
     private Image my_image;
     private Globals globals;
     private Image center_image;
+    private UI_Icons ui_icons;
 
     private Color unselectedColor = new Color(1f, 1f, 1f, 1f);
     private Color selectedColor = new Color(.2f, .2f, .2f, 1f);
@@ -31,6 +32,17 @@ public class AbilityIcon : MonoBehaviour {
             Debug.Log("Unable to find CenterImage of " + name);
         
         globals = FindObjectOfType<Globals>();
+
+        OnLevelWasLoaded();
+    }
+
+    void OnLevelWasLoaded()
+    {
+        ui_icons = GameObject.FindObjectOfType<UI_Icons>();
+        if (!ui_icons)
+        {
+            Debug.LogWarning("no icon parent!");
+        }
     }
 
     public void Copy(AbilityIcon abIcon)
@@ -66,25 +78,29 @@ public class AbilityIcon : MonoBehaviour {
 
     void OnMouseDown()
     {
-        Select();
+        if(isSelected)
+            Unselect();
+        else
+            Select();
     }
 
    
 
     public void Select()
     {
+        ui_icons.UnselectAll();
         globals.selectedAbIcon = this;
         isSelected = true;
         center_image.color = selectedColor;       
 
-        Debug.Log("Selecting " + name);
+        //Debug.Log("Selecting " + name);
     }
 
     public void Unselect()
     {
         isSelected = false;
         center_image.color = unselectedColor;
-        Debug.Log("Unselecting " + name);
+       // Debug.Log("Unselecting " + name);
     }
 
     void CheckUnderPointer()

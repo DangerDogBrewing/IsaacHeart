@@ -7,11 +7,13 @@ public class Cond_Chill : Condition {
     private float originalWalkSpeed;
     private float originalAttackSpeed;
     public float chillSpeed = 0.3f;
+  
 
     public Cond_Chill(float duration_in, GameObject target_in) : base (duration_in, target_in)
     {
         originalWalkSpeed = target.GetComponent<Hero>().walkSpeed;
         originalAttackSpeed = target.GetComponent<Hero>().attackSpeed;
+        shortName = "Chilled";
     }
 
     public override void ApplyCondition()

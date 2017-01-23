@@ -8,7 +8,6 @@ public class Spellbook : MonoBehaviour {
     public Ability[] abilities;
     private AbilityIcon[] abIcons;
     private Hero caster;
-
     private UI_Icons ui_icons;
 
     // Use this for initialization

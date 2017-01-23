@@ -265,6 +265,7 @@
     <None Include="Assets\Anima2D\Licenses.txt" />
     <None Include="Assets\Anima2D\Readme.txt" />
     <None Include="Assets\Anima2D\Version.txt" />
+    <None Include="Assets\Shader\Backface_Culling_Off.shader" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\SyntaxTree\UnityVS\2015\UnityVS.CSharp.targets" />
 </Project>

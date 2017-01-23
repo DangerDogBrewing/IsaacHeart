@@ -96,16 +96,19 @@
     <Compile Include="Assets\Scripts\Abilities\Fire_Explosion.cs" />
     <Compile Include="Assets\Scripts\Abilities\Ice_Explosion.cs" />
     <Compile Include="Assets\Scripts\Abilities\Meteor.cs" />
+    <Compile Include="Assets\Scripts\Abilities\Particles\ParticleFollow.cs" />
     <Compile Include="Assets\Scripts\Attacker.cs" />
     <Compile Include="Assets\Scripts\Condtions\Cond_Burn.cs" />
     <Compile Include="Assets\Scripts\Condtions\Cond_Chill.cs" />
     <Compile Include="Assets\Scripts\Condtions\Condition.cs" />
     <Compile Include="Assets\Scripts\Condtions\Conditions.cs" />
+    <Compile Include="Assets\Scripts\Condtions\ConditionsWindow.cs" />
     <Compile Include="Assets\Scripts\Controllable_Hero.cs" />
     <Compile Include="Assets\Scripts\Core_Game_Touch_Inputs.cs" />
     <Compile Include="Assets\Scripts\EnemySpawner.cs" />
     <Compile Include="Assets\Scripts\FadeIn.cs" />
     <Compile Include="Assets\Scripts\Fox.cs" />
+    <Compile Include="Assets\Scripts\GameObjectExtension.cs" />
     <Compile Include="Assets\Scripts\GameTimer.cs" />
     <Compile Include="Assets\Scripts\Globals.cs" />
     <Compile Include="Assets\Scripts\Health.cs" />
@@ -132,6 +135,7 @@
     <None Include="Assets\Anima2D\Licenses.txt" />
     <None Include="Assets\Anima2D\Readme.txt" />
     <None Include="Assets\Anima2D\Version.txt" />
+    <None Include="Assets\Shader\Backface_Culling_Off.shader" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\SyntaxTree\UnityVS\2015\UnityVS.CSharp.targets" />
 </Project>

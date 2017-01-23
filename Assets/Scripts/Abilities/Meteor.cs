@@ -44,7 +44,7 @@ public class Meteor : MonoBehaviour {
         else
         {
             Debug.Log("No target for meteor");
-           // Destroy(gameObject);
+            Destroy(gameObject);
         }
 
     }

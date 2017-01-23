@@ -42,4 +42,12 @@ public class UI_Icons : MonoBehaviour {
     }
 
    
+    public void UnselectAll()
+    {
+        foreach (AbilityIcon abIcon in icons)
+        {
+            abIcon.Unselect();
+        }
+    }
+
 }

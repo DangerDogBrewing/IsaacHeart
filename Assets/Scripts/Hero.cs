@@ -148,8 +148,8 @@ public class Hero : MonoBehaviour
         }
 
         //Changes Z order so things lower on y axis are closer to screen
-        transform.position = new Vector3(transform.position.x, transform.position.y, (transform.position.y - yceiling) );
-
+         transform.position = new Vector3(transform.position.x, transform.position.y, (transform.position.y - yceiling)/100 );
+        //gameObject.SetLayer( Mathf.FloorToInt((yceiling - transform.position.y) * 10));
 
         conditions.ApplyConditions();
     }
