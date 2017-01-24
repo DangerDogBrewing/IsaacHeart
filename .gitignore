@@ -2,7 +2,7 @@
 /Library/
 /Temp/
 /Obj/
-
+/Build/
 
 # Windows image file caches
 Thumbs.db
