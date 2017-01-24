@@ -72,6 +72,12 @@
     <Reference Include="UnityEditor">
       <HintPath>Library\UnityAssemblies\UnityEditor.dll</HintPath>
     </Reference>
+    <Reference Include="GETween">
+      <HintPath>Assets\GUI Animator\Common\Plugins\GETween.dll</HintPath>
+    </Reference>
+    <Reference Include="GUIAnimatorFREE">
+      <HintPath>Assets\GUI Animator\GUI Animator FREE\Plugins\GUIAnimatorFREE.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Anima2D\Scripts\Bone2D.cs" />
@@ -90,51 +96,72 @@
     <Compile Include="Assets\Anima2D\Scripts\SpriteMesh.cs" />
     <Compile Include="Assets\Anima2D\Scripts\SpriteMeshAnimation.cs" />
     <Compile Include="Assets\Anima2D\Scripts\SpriteMeshInstance.cs" />
-    <Compile Include="Assets\Scripts\AI_Hero.cs" />
-    <Compile Include="Assets\Scripts\Abilities\Ability.cs" />
-    <Compile Include="Assets\Scripts\Abilities\AbilityIcon.cs" />
-    <Compile Include="Assets\Scripts\Abilities\Fire_Explosion.cs" />
-    <Compile Include="Assets\Scripts\Abilities\Ice_Explosion.cs" />
-    <Compile Include="Assets\Scripts\Abilities\Meteor.cs" />
-    <Compile Include="Assets\Scripts\Abilities\Particles\ParticleFollow.cs" />
-    <Compile Include="Assets\Scripts\Attacker.cs" />
-    <Compile Include="Assets\Scripts\Condtions\Cond_Burn.cs" />
-    <Compile Include="Assets\Scripts\Condtions\Cond_Chill.cs" />
-    <Compile Include="Assets\Scripts\Condtions\Condition.cs" />
-    <Compile Include="Assets\Scripts\Condtions\Conditions.cs" />
-    <Compile Include="Assets\Scripts\Condtions\ConditionsWindow.cs" />
-    <Compile Include="Assets\Scripts\Controllable_Hero.cs" />
-    <Compile Include="Assets\Scripts\Core_Game_Touch_Inputs.cs" />
-    <Compile Include="Assets\Scripts\EnemySpawner.cs" />
-    <Compile Include="Assets\Scripts\FadeIn.cs" />
-    <Compile Include="Assets\Scripts\Fox.cs" />
-    <Compile Include="Assets\Scripts\GameObjectExtension.cs" />
-    <Compile Include="Assets\Scripts\GameTimer.cs" />
-    <Compile Include="Assets\Scripts\Globals.cs" />
-    <Compile Include="Assets\Scripts\Health.cs" />
-    <Compile Include="Assets\Scripts\Hero.cs" />
-    <Compile Include="Assets\Scripts\LevelManager.cs" />
-    <Compile Include="Assets\Scripts\Lizard.cs" />
-    <Compile Include="Assets\Scripts\LoseCollider.cs" />
-    <Compile Include="Assets\Scripts\Melee_Hero.cs" />
-    <Compile Include="Assets\Scripts\MusicManager.cs" />
-    <Compile Include="Assets\Scripts\OptionsController.cs" />
-    <Compile Include="Assets\Scripts\Pause.cs" />
-    <Compile Include="Assets\Scripts\PlayerPrefsManager.cs" />
-    <Compile Include="Assets\Scripts\Projectile.cs" />
-    <Compile Include="Assets\Scripts\Ranged_Hero.cs" />
-    <Compile Include="Assets\Scripts\Shooter.cs" />
-    <Compile Include="Assets\Scripts\Shredder.cs" />
-    <Compile Include="Assets\Scripts\Singleton.cs" />
-    <Compile Include="Assets\Scripts\Spellbook.cs" />
-    <Compile Include="Assets\Scripts\SporeDisplay.cs" />
-    <Compile Include="Assets\Scripts\UI_Icons.cs" />
-    <Compile Include="Assets\Scripts\UniversalSpeed.cs" />
+    <Compile Include="Assets\Elemental Free\Scripts\GE_ELF_Demo.cs" />
+    <Compile Include="Assets\GE Common Assets\GE Orbit Camera\Scripts\GE_OrbitCamera.cs" />
+    <Compile Include="Assets\GE Common Assets\GE Orbit Camera\Scripts\GE_OrbitCameraUI.cs" />
+    <Compile Include="Assets\GE Common Assets\GE Toggle Full Screen\Scripts\GE_ToggleFullScreenUI.cs" />
+    <Compile Include="Assets\GE Common Assets\Scripts\GE_UIResponder.cs" />
+    <Compile Include="Assets\GUI Animator\GUI Animator FREE\Demo (CSharp)\Scripts\GA_FREE_Demo00.cs" />
+    <Compile Include="Assets\GUI Animator\GUI Animator FREE\Demo (CSharp)\Scripts\GA_FREE_Demo01.cs" />
+    <Compile Include="Assets\GUI Animator\GUI Animator FREE\Demo (CSharp)\Scripts\GA_FREE_Demo02.cs" />
+    <Compile Include="Assets\GUI Animator\GUI Animator FREE\Demo (CSharp)\Scripts\GA_FREE_Demo03.cs" />
+    <Compile Include="Assets\GUI Animator\GUI Animator FREE\Demo (CSharp)\Scripts\GA_FREE_Demo04.cs" />
+    <Compile Include="Assets\GUI Animator\GUI Animator FREE\Demo (CSharp)\Scripts\GA_FREE_Demo05.cs" />
+    <Compile Include="Assets\GUI Animator\GUI Animator FREE\Demo (CSharp)\Scripts\GA_FREE_Demo06.cs" />
+    <Compile Include="Assets\GUI Animator\GUI Animator FREE\Demo (CSharp)\Scripts\GA_FREE_Demo07.cs" />
+    <Compile Include="Assets\GUI Animator\GUI Animator FREE\Demo (CSharp)\Scripts\GA_FREE_Demo08.cs" />
+    <Compile Include="Assets\GUI Animator\GUI Animator FREE\Demo (CSharp)\Scripts\GA_FREE_DemoPlaySound.cs" />
+    <Compile Include="Assets\GUI Animator\GUI Animator FREE\Demo (CSharp)\Scripts\GA_FREE_OpenOtherScene.cs" />
+    <Compile Include="Assets\GUI Animator\GUI Animator FREE\Demo Basic (CSharp)\Scripts\GUIAnimatorFREEDemo.cs" />
+    <Compile Include="Assets\_Scripts\AI_Hero.cs" />
+    <Compile Include="Assets\_Scripts\Abilities\Ability.cs" />
+    <Compile Include="Assets\_Scripts\Abilities\AbilityIcon.cs" />
+    <Compile Include="Assets\_Scripts\Abilities\Fire_Explosion.cs" />
+    <Compile Include="Assets\_Scripts\Abilities\Ice_Explosion.cs" />
+    <Compile Include="Assets\_Scripts\Abilities\Meteor.cs" />
+    <Compile Include="Assets\_Scripts\Abilities\Particles\ParticleFollow.cs" />
+    <Compile Include="Assets\_Scripts\Abilities\Spellbook.cs" />
+    <Compile Include="Assets\_Scripts\Attacker.cs" />
+    <Compile Include="Assets\_Scripts\Condtions\Cond_Burn.cs" />
+    <Compile Include="Assets\_Scripts\Condtions\Cond_Chill.cs" />
+    <Compile Include="Assets\_Scripts\Condtions\Condition.cs" />
+    <Compile Include="Assets\_Scripts\Condtions\Conditions.cs" />
+    <Compile Include="Assets\_Scripts\Condtions\ConditionsWindow.cs" />
+    <Compile Include="Assets\_Scripts\Controllable_Hero.cs" />
+    <Compile Include="Assets\_Scripts\Core_Game_Touch_Inputs.cs" />
+    <Compile Include="Assets\_Scripts\EnemySpawner.cs" />
+    <Compile Include="Assets\_Scripts\FadeIn.cs" />
+    <Compile Include="Assets\_Scripts\Fox.cs" />
+    <Compile Include="Assets\_Scripts\GameObjectExtension.cs" />
+    <Compile Include="Assets\_Scripts\GameTimer.cs" />
+    <Compile Include="Assets\_Scripts\Globals.cs" />
+    <Compile Include="Assets\_Scripts\Health.cs" />
+    <Compile Include="Assets\_Scripts\Hero.cs" />
+    <Compile Include="Assets\_Scripts\LevelManager.cs" />
+    <Compile Include="Assets\_Scripts\Lizard.cs" />
+    <Compile Include="Assets\_Scripts\LoseCollider.cs" />
+    <Compile Include="Assets\_Scripts\Melee_Hero.cs" />
+    <Compile Include="Assets\_Scripts\MusicManager.cs" />
+    <Compile Include="Assets\_Scripts\OptionsController.cs" />
+    <Compile Include="Assets\_Scripts\Pause.cs" />
+    <Compile Include="Assets\_Scripts\PlayerPrefsManager.cs" />
+    <Compile Include="Assets\_Scripts\Projectile.cs" />
+    <Compile Include="Assets\_Scripts\Ranged_Hero.cs" />
+    <Compile Include="Assets\_Scripts\Shooter.cs" />
+    <Compile Include="Assets\_Scripts\Shredder.cs" />
+    <Compile Include="Assets\_Scripts\Singleton.cs" />
+    <Compile Include="Assets\_Scripts\SporeDisplay.cs" />
+    <Compile Include="Assets\_Scripts\UI_Icons.cs" />
+    <Compile Include="Assets\_Scripts\UniversalSpeed.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Anima2D\Licenses.txt" />
     <None Include="Assets\Anima2D\Readme.txt" />
     <None Include="Assets\Anima2D\Version.txt" />
+    <None Include="Assets\Elemental Free\Readme.txt" />
+    <None Include="Assets\GE Common Assets\Readme.txt" />
+    <None Include="Assets\GUI Animator\GUI Animator FREE\!How to.txt" />
+    <None Include="Assets\GUI Animator\GUI Animator FREE\Readme.txt" />
     <None Include="Assets\Shader\Backface_Culling_Off.shader" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\SyntaxTree\UnityVS\2015\UnityVS.CSharp.targets" />
