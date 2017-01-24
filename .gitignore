@@ -1,8 +1,7 @@
 #Unity Folders
-/Library/
-/Temp/
-/Obj/
-/Build/
+/Library
+/Temp
+/Build
 
 # Windows image file caches
 Thumbs.db
